@@ -1,0 +1,16 @@
+{
+  "projectSettings": {
+    "framework": "nextjs"
+  },
+  "functions": {
+    "src/app/**/*.tsx": {
+      "runtime": "@vercel/next"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap"
+    }
+  ]
+}
