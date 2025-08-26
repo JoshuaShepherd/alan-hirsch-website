@@ -1,26 +1,228 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* Editorial Modern Colors */
+  --color-paper: #F8F8F6;
+  --color-stone: #E3E3E0;
+  --color-ink: #111111;
+  --color-graphite: #444444;
+  --color-forest: #1D4A38;
+  --color-rust: #B2613E;
+  --color-soft-blue: #4B83C2;
+  
+  /* Display Typography */
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  
+  /* Editorial Modern Spacing */
+  --spacing-section: 4rem;
+  --spacing-section-lg: 6rem;
+  --max-width-content: 700px;
+  --max-width-container: 1200px;
+  
+  /* Typography Scale */
+  --font-size-display-xl: clamp(3rem, 6vw, 5rem);
+  --font-size-display-lg: clamp(2.5rem, 5vw, 4rem);
+  --font-size-display-md: clamp(2rem, 3vw, 3rem);
+  --font-size-body-lg: 1.25rem;
+  --font-size-body: 1.125rem;
+  --line-height-display: 1.2;
+  --line-height-body: 1.7;
+  
+  /* Standard shadcn variables */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.25rem;
+  /* Editorial Modern Base Colors */
+  --background: #F8F8F6; /* Paper White */
+  --foreground: #111111; /* Ink Black */
+  --card: #F8F8F6;
+  --card-foreground: #111111;
+  --popover: #F8F8F6;
+  --popover-foreground: #111111;
+  --primary: #1D4A38; /* Forest Green */
+  --primary-foreground: #F8F8F6;
+  --secondary: #E3E3E0; /* Stone Gray */
+  --secondary-foreground: #111111;
+  --muted: #E3E3E0;
+  --muted-foreground: #444444; /* Graphite Gray */
+  --accent: #B2613E; /* Rust Copper */
+  --accent-foreground: #F8F8F6;
+  --destructive: #dc2626;
+  --destructive-foreground: #F8F8F6;
+  --border: #E3E3E0;
+  --input: #E3E3E0;
+  --ring: #1D4A38;
+  --chart-1: #1D4A38;
+  --chart-2: #B2613E;
+  --chart-3: #4B83C2;
+  --chart-4: #444444;
+  --chart-5: #E3E3E0;
+  --sidebar: #F8F8F6;
+  --sidebar-foreground: #111111;
+  --sidebar-primary: #1D4A38;
+  --sidebar-primary-foreground: #F8F8F6;
+  --sidebar-accent: #E3E3E0;
+  --sidebar-accent-foreground: #111111;
+  --sidebar-border: #E3E3E0;
+  --sidebar-ring: #1D4A38;
+}
+
+.dark {
+  --background: #0F0F0F;
+  --foreground: #FAFAFA;
+  --card: #1C1C1C;
+  --card-foreground: #FAFAFA;
+  --popover: #1C1C1C;
+  --popover-foreground: #FAFAFA;
+  --primary: #2D6B4A;
+  --primary-foreground: #FAFAFA;
+  --secondary: #2D2D2D;
+  --secondary-foreground: #E5E5E5;
+  --muted: #2D2D2D;
+  --muted-foreground: #B0B0B0;
+  --accent: #D4764E;
+  --accent-foreground: #FAFAFA;
+  --destructive: #EF4444;
+  --destructive-foreground: #FAFAFA;
+  --border: #404040;
+  --input: #2D2D2D;
+  --ring: #2D6B4A;
+  --chart-1: #2D6B4A;
+  --chart-2: #D4764E;
+  --chart-3: #6B9BD4;
+  --chart-4: #B0B0B0;
+  --chart-5: #2D2D2D;
+  --sidebar: #0F0F0F;
+  --sidebar-foreground: #FAFAFA;
+  --sidebar-primary: #2D6B4A;
+  --sidebar-primary-foreground: #FAFAFA;
+  --sidebar-accent: #2D2D2D;
+  --sidebar-accent-foreground: #E5E5E5;
+  --sidebar-border: #404040;
+  --sidebar-ring: #2D6B4A;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-background text-foreground font-body;
+    line-height: 1.7;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display text-foreground;
+    line-height: 1.2;
+  }
+  h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 500;
+  }
+  h2 {
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 500;
+  }
+  h3 {
+    font-size: clamp(1.5rem, 2vw, 2rem);
+    font-weight: 500;
+  }
+  p {
+    font-size: 1.125rem;
+    line-height: 1.7;
+  }
+  .text-display-xl {
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 1.1;
+  }
+  .text-display-lg {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.2;
+  }
+  .text-display-md {
+    font-size: clamp(2rem, 3vw, 3rem);
+    line-height: 1.3;
+  }
+  .max-w-content {
+    max-width: 700px;
+  }
+  .max-w-container {
+    max-width: 1200px;
+  }
+  .section-padding {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  .section-padding-lg {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+  
+  /* Theme-aware utility classes */
+  .text-muted {
+    @apply text-muted-foreground;
+  }
+  
+  .bg-page {
+    @apply bg-background;
+  }
+  
+  .bg-section {
+    @apply bg-secondary/30;
+  }
+  
+  .border-theme {
+    @apply border-border;
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-primary-foreground px-6 py-3 rounded font-medium hover:bg-primary/90 transition-colors;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-foreground text-foreground px-6 py-3 rounded font-medium hover:bg-foreground hover:text-background transition-colors;
+  }
+  
+  .bg-chart-3 {
+    background-color: var(--chart-3);
+  }
 }

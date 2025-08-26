@@ -1,103 +1,181 @@
+import Link from "next/link";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="bg-page">
+      {/* Hero Section */}
+      <section className="section-padding-lg">
+        <div className="max-w-container mx-auto px-6">
+          <div className="grid lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-8">
+              <h1 className="font-display text-display-lg mb-6 text-foreground">
+                Reimagining the Church for a Post-Christendom World
+              </h1>
+              <p className="text-xl mb-8 max-w-content leading-relaxed">
+                For over 30 years, I've helped leaders worldwide recover the missional DNA of the church. 
+                Discover frameworks and tools to build movements that last.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link 
+                  href="/newsletter" 
+                  className="btn-primary inline-block text-center"
+                >
+                  Get Monthly Insights
+                </Link>
+                <Link 
+                  href="/resources" 
+                  className="btn-outline inline-block text-center"
+                >
+                  Explore Resources
+                </Link>
+              </div>
+            </div>
+            <div className="lg:col-span-4">
+              <div className="aspect-square rounded-lg overflow-hidden shadow-lg">
+                <Image
+                  src="/images/alan-hirsch-icon.png"
+                  alt="Alan Hirsch - Missional Church Leader and Author"
+                  width={500}
+                  height={500}
+                  className="w-full h-full object-cover"
+                  priority
+                />
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Value Proposition */}
+      <section className="section-padding bg-section">
+        <div className="max-w-container mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="font-display text-display-md mb-6 text-foreground">
+              What if we've forgotten how to be the Church?
+            </h2>
+            <p className="text-lg max-w-content mx-auto leading-relaxed">
+              Much of the Western church has settled into maintenance mode. But the gospel calls us beyond maintenance—to mission. I explore how to get there.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary rounded-full mx-auto mb-4 flex items-center justify-center">
+                <svg className="w-8 h-8 text-primary-foreground" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V8H19V19ZM5 6V5H19V6H5Z"/>
+                </svg>
+              </div>
+              <h3 className="font-display text-xl font-semibold mb-3 text-foreground">APEST Framework</h3>
+              <p className="">
+                Discover the five-fold ministry gifts that unleash the church's full potential for mission.
+              </p>
+            </div>
+            
+            <div className="text-center">
+              <div className="w-16 h-16 bg-accent rounded-full mx-auto mb-4 flex items-center justify-center">
+                <svg className="w-8 h-8 text-accent-foreground" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2L13.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L10.91 8.26L12 2Z"/>
+                </svg>
+              </div>
+              <h3 className="font-display text-xl font-semibold mb-3 text-foreground">Missional DNA</h3>
+              <p className="">
+                Reconnect with the church's core mission to reach the world through organic movements.
+              </p>
+            </div>
+            
+            <div className="text-center">
+              <div className="w-16 h-16 bg-chart-3 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12S6.48 22 12 22 22 17.52 22 12 17.52 2 12 2ZM13 17H11V15H13V17ZM13 13H11V7H13V13Z"/>
+                </svg>
+              </div>
+              <h3 className="font-display text-xl font-semibold mb-3 text-foreground">Cultural Renewal</h3>
+              <p className="">
+                Navigate post-Christendom contexts with wisdom and authentic gospel witness.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Content */}
+      <section className="section-padding">
+        <div className="max-w-container mx-auto px-6">
+          <h2 className="font-display text-display-md text-center mb-12 text-foreground">
+            Latest Insights
+          </h2>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Featured Article */}
+            <article className="bg-card border border-border rounded-lg p-6 hover:shadow-lg transition-shadow">
+              <h3 className="font-display text-xl font-semibold mb-3 text-card-foreground">
+                The Forgotten Ways of Mission
+              </h3>
+              <p className="mb-4">
+                How the early church's simple practices can revolutionize modern ministry approaches.
+              </p>
+              <Link href="/articles/forgotten-ways" className="text-primary hover:text-primary/80 font-medium">
+                Read more →
+              </Link>
+            </article>
+
+            {/* Featured Resource */}
+            <article className="bg-card border border-border rounded-lg p-6 hover:shadow-lg transition-shadow">
+              <h3 className="font-display text-xl font-semibold mb-3 text-card-foreground">
+                APEST Assessment Tool
+              </h3>
+              <p className="mb-4">
+                Discover your unique ministry gifts and how they contribute to the body of Christ.
+              </p>
+              <Link href="/resources/apest-assessment" className="text-primary hover:text-primary/80 font-medium">
+                Take Assessment →
+              </Link>
+            </article>
+
+            {/* Featured Podcast */}
+            <article className="bg-card border border-border rounded-lg p-6 hover:shadow-lg transition-shadow">
+              <h3 className="font-display text-xl font-semibold mb-3 text-card-foreground">
+                Movemental Leadership
+              </h3>
+              <p className="mb-4">
+                Latest podcast episode on cultivating leaders for sustainable church movements.
+              </p>
+              <Link href="/podcast/movemental-leadership" className="text-primary hover:text-primary/80 font-medium">
+                Listen now →
+              </Link>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonial */}
+      <section className="section-padding bg-section">
+        <div className="max-w-content mx-auto px-6 text-center">
+          <blockquote className="text-xl italic font-display mb-6 text-foreground">
+            "I've seen firsthand how small communities can spark global movements. My hope is to see the Church fully alive again."
+          </blockquote>
+          <cite className="font-semibold">— Alan Hirsch</cite>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="section-padding">
+        <div className="max-w-content mx-auto px-6 text-center">
+          <h2 className="font-display text-display-md mb-6 text-foreground">
+            Join the Movement
+          </h2>
+          <p className="text-lg mb-8">
+            Get practical insights on building movemental churches—delivered monthly.
+          </p>
+          <Link 
+            href="/newsletter" 
+            className="btn-primary inline-block"
+          >
+            Subscribe to Newsletter
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }
