@@ -63,14 +63,13 @@ export default function Home() {
             {/* Portrait Card */}
             <div className="relative">
               <div className="bg-card border border-border rounded-2xl p-8 shadow-xl">
-                <div className="aspect-[4/5] rounded-xl overflow-hidden mb-6">
+                <div className="aspect-square rounded-xl overflow-hidden mb-6 bg-gradient-to-br from-primary/5 to-accent/5">
                   <Image
-                    src="/images/alan-hirsch-portrait.jpg"
+                    src="/images/alan-hirsch-bw.png"
                     alt="Alan Hirsch - Missional Church Leader and Author"
                     width={400}
-                    height={500}
-                    className="w-full h-full object-cover object-[50%_30%]"
-                    style={{ objectPosition: '50% 30%' }}
+                    height={400}
+                    className="w-full h-full object-cover"
                     priority
                   />
                 </div>

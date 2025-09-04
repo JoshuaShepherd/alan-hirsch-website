@@ -9,6 +9,7 @@ interface AgentMessage {
   role: 'user' | 'assistant' | 'system'
   content: string
   timestamp: Date
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   tools?: any[]
   status?: 'sending' | 'complete' | 'error'
 }
@@ -65,7 +66,9 @@ async function generateAgentResponse(userMessage: string) {
 
   const message = userMessage.toLowerCase()
   let content = ''
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let tools: any[] = []
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let approvals: any[] = []
 
   // Pattern matching for different topics (would be replaced with proper LLM)

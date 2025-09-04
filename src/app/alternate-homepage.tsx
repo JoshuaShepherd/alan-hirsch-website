@@ -18,7 +18,8 @@ interface AgentMessage {
 interface ToolCall {
   id: string
   name: string
-  parameters: Record<string, any>
+  parameters: Record<string, unknown>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   result?: any
   needsApproval?: boolean
   approved?: boolean

@@ -10,6 +10,7 @@ interface Tool {
   name: string
   description: string
   parameters: z.ZodSchema
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   execute: (params: any) => Promise<any>
   needsApproval?: boolean
 }
