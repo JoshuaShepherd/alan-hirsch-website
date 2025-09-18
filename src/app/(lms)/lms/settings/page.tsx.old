@@ -1,0 +1,334 @@
+'use client'
+
+import { useState } from 'react'
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Switch } from '@/components/ui/switch'
+import { Separator } from '@/components/ui/separator'
+import { Save, Palette, Users, Bell, Shield } from 'lucide-react'
+
+export default function SettingsPage() {
+  const [settings, setSettings] = useState({
+    tenant: {
+      name: 'My LMS Tenant',
+      slug: 'my-lms-tenant',
+    },
+    theme: {
+      brandColor: '#3B82F6',
+      accentColor: '#22C55E',
+      radius: '16',
+    },
+    notifications: {
+      emailEnrollments: true,
+      emailCompletions: true,
+      emailReminders: false,
+    },
+    features: {
+      allowComments: true,
+      showProgress: true,
+      certificatesEnabled: false,
+    }
+  })
+
+  const handleSave = () => {
+    // In a real app, this would save to the database
+    console.log('Saving settings:', settings)
+  }
+
+  return (
+    <div className="p-6 max-w-4xl mx-auto space-y-6">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold text-foreground">Settings</h1>
+          <p className="text-muted-foreground">Manage your LMS configuration and preferences</p>
+        </div>
+        <Button onClick={handleSave} className="bg-lms-brand hover:bg-lms-brand/90">
+          <Save className="mr-2 h-4 w-4" />
+          Save Changes
+        </Button>
+      </div>
+
+      {/* Settings Tabs */}
+      <Tabs defaultValue="general" className="space-y-6">
+        <TabsList className="grid w-full grid-cols-4">
+          <TabsTrigger value="general" className="flex items-center space-x-2">
+            <Shield className="h-4 w-4" />
+            <span>General</span>
+          </TabsTrigger>
+          <TabsTrigger value="theme" className="flex items-center space-x-2">
+            <Palette className="h-4 w-4" />
+            <span>Theme</span>
+          </TabsTrigger>
+          <TabsTrigger value="users" className="flex items-center space-x-2">
+            <Users className="h-4 w-4" />
+            <span>Users</span>
+          </TabsTrigger>
+          <TabsTrigger value="notifications" className="flex items-center space-x-2">
+            <Bell className="h-4 w-4" />
+            <span>Notifications</span>
+          </TabsTrigger>
+        </TabsList>
+
+        {/* General Settings */}
+        <TabsContent value="general" className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Tenant Information</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="tenant-name">Tenant Name</Label>
+                <Input
+                  id="tenant-name"
+                  value={settings.tenant.name}
+                  onChange={(e) => setSettings(prev => ({
+                    ...prev,
+                    tenant: { ...prev.tenant, name: e.target.value }
+                  }))}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="tenant-slug">URL Slug</Label>
+                <Input
+                  id="tenant-slug"
+                  value={settings.tenant.slug}
+                  onChange={(e) => setSettings(prev => ({
+                    ...prev,
+                    tenant: { ...prev.tenant, slug: e.target.value }
+                  }))}
+                />
+                <p className="text-sm text-muted-foreground">
+                  This will be used in course URLs: /lms/learn/{settings.tenant.slug}/...
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Features</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="space-y-0.5">
+                  <Label>Allow Comments</Label>
+                  <p className="text-sm text-muted-foreground">
+                    Let learners comment on lessons
+                  </p>
+                </div>
+                <Switch
+                  checked={settings.features.allowComments}
+                  onCheckedChange={(checked) => setSettings(prev => ({
+                    ...prev,
+                    features: { ...prev.features, allowComments: checked }
+                  }))}
+                />
+              </div>
+              
+              <Separator />
+              
+              <div className="flex items-center justify-between">
+                <div className="space-y-0.5">
+                  <Label>Show Progress Indicators</Label>
+                  <p className="text-sm text-muted-foreground">
+                    Display progress bars and completion status
+                  </p>
+                </div>
+                <Switch
+                  checked={settings.features.showProgress}
+                  onCheckedChange={(checked) => setSettings(prev => ({
+                    ...prev,
+                    features: { ...prev.features, showProgress: checked }
+                  }))}
+                />
+              </div>
+              
+              <Separator />
+              
+              <div className="flex items-center justify-between">
+                <div className="space-y-0.5">
+                  <Label>Certificates</Label>
+                  <p className="text-sm text-muted-foreground">
+                    Generate completion certificates
+                  </p>
+                </div>
+                <Switch
+                  checked={settings.features.certificatesEnabled}
+                  onCheckedChange={(checked) => setSettings(prev => ({
+                    ...prev,
+                    features: { ...prev.features, certificatesEnabled: checked }
+                  }))}
+                />
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* Theme Settings */}
+        <TabsContent value="theme" className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Brand Colors</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="brand-color">Brand Color</Label>
+                <div className="flex items-center space-x-3">
+                  <Input
+                    id="brand-color"
+                    type="color"
+                    value={settings.theme.brandColor}
+                    onChange={(e) => setSettings(prev => ({
+                      ...prev,
+                      theme: { ...prev.theme, brandColor: e.target.value }
+                    }))}
+                    className="w-16 h-10 p-1 border rounded"
+                  />
+                  <Input
+                    value={settings.theme.brandColor}
+                    onChange={(e) => setSettings(prev => ({
+                      ...prev,
+                      theme: { ...prev.theme, brandColor: e.target.value }
+                    }))}
+                    className="flex-1"
+                  />
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="accent-color">Accent Color</Label>
+                <div className="flex items-center space-x-3">
+                  <Input
+                    id="accent-color"
+                    type="color"
+                    value={settings.theme.accentColor}
+                    onChange={(e) => setSettings(prev => ({
+                      ...prev,
+                      theme: { ...prev.theme, accentColor: e.target.value }
+                    }))}
+                    className="w-16 h-10 p-1 border rounded"
+                  />
+                  <Input
+                    value={settings.theme.accentColor}
+                    onChange={(e) => setSettings(prev => ({
+                      ...prev,
+                      theme: { ...prev.theme, accentColor: e.target.value }
+                    }))}
+                    className="flex-1"
+                  />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Border Radius</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2">
+                <Label htmlFor="radius">Corner Radius (px)</Label>
+                <Input
+                  id="radius"
+                  type="number"
+                  min="0"
+                  max="32"
+                  value={settings.theme.radius}
+                  onChange={(e) => setSettings(prev => ({
+                    ...prev,
+                    theme: { ...prev.theme, radius: e.target.value }
+                  }))}
+                />
+                <p className="text-sm text-muted-foreground">
+                  Controls the roundness of buttons, cards, and other elements
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* User Management */}
+        <TabsContent value="users" className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Team Members</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-center py-8 text-muted-foreground">
+                <Users className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                <p>User management will be implemented in a future update.</p>
+                <p className="text-sm">This will allow you to invite team members as admins, editors, or viewers.</p>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* Notifications */}
+        <TabsContent value="notifications" className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Email Notifications</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="space-y-0.5">
+                  <Label>New Enrollments</Label>
+                  <p className="text-sm text-muted-foreground">
+                    Get notified when someone enrolls in your courses
+                  </p>
+                </div>
+                <Switch
+                  checked={settings.notifications.emailEnrollments}
+                  onCheckedChange={(checked) => setSettings(prev => ({
+                    ...prev,
+                    notifications: { ...prev.notifications, emailEnrollments: checked }
+                  }))}
+                />
+              </div>
+              
+              <Separator />
+              
+              <div className="flex items-center justify-between">
+                <div className="space-y-0.5">
+                  <Label>Course Completions</Label>
+                  <p className="text-sm text-muted-foreground">
+                    Get notified when learners complete courses
+                  </p>
+                </div>
+                <Switch
+                  checked={settings.notifications.emailCompletions}
+                  onCheckedChange={(checked) => setSettings(prev => ({
+                    ...prev,
+                    notifications: { ...prev.notifications, emailCompletions: checked }
+                  }))}
+                />
+              </div>
+              
+              <Separator />
+              
+              <div className="flex items-center justify-between">
+                <div className="space-y-0.5">
+                  <Label>Reminder Emails</Label>
+                  <p className="text-sm text-muted-foreground">
+                    Send reminder emails to inactive learners
+                  </p>
+                </div>
+                <Switch
+                  checked={settings.notifications.emailReminders}
+                  onCheckedChange={(checked) => setSettings(prev => ({
+                    ...prev,
+                    notifications: { ...prev.notifications, emailReminders: checked }
+                  }))}
+                />
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
+    </div>
+  )
+}

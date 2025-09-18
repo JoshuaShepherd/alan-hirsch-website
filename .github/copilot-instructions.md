@@ -63,7 +63,7 @@ npm run lint               # ESLint validation
 /* Colors */
 --color-paper: #F8F8F6    /* Background */
 --color-ink: #111111      /* Primary text */
---color-forest: #1D4A38   /* Primary brand */
+--color-indigo: #1D4A38   /* Primary brand */
 --color-rust: #B2613E     /* Accent */
 
 /* Typography */

@@ -14,14 +14,34 @@ const metadata: Metadata = {
 export default function SignUp() {
   const [mode, setMode] = useState<'signin' | 'signup'>('signup')
   
-  const handleSubmit = (data: {
+  const handleSubmit = async (data: {
     email: string
     password: string
     name?: string
     confirmPassword?: string
   }) => {
-    // Handle form submission here
-    console.log('Form submitted:', data)
+    try {
+      const response = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+
+      const result = await response.json()
+
+      if (response.ok) {
+        // Redirect to dashboard or home page
+        window.location.href = '/lms/dashboard'
+      } else {
+        console.error('Sign up failed:', result.error)
+        alert(result.error || 'Sign up failed')
+      }
+    } catch (error) {
+      console.error('Sign up error:', error)
+      alert('An error occurred during sign up')
+    }
   }
 
   return (

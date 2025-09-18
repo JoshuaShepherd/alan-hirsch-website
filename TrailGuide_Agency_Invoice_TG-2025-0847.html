@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrailGuide Agency - Development Invoice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+            font-size: 14px;
+        }
+
+        .invoice-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px;
+            background: white;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #0066cc;
+        }
+
+        .company-info {
+            flex: 1;
+        }
+
+        .company-name {
+            font-size: 32px;
+            font-weight: 800;
+            color: #0066cc;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .tagline {
+            font-size: 16px;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .company-details {
+            font-size: 13px;
+            color: #444;
+            line-height: 1.8;
+        }
+
+        .invoice-meta {
+            text-align: right;
+            flex: 0 0 300px;
+        }
+
+        .invoice-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+        }
+
+        .invoice-details {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #0066cc;
+        }
+
+        .invoice-details table {
+            width: 100%;
+            font-size: 13px;
+        }
+
+        .invoice-details td {
+            padding: 6px 0;
+        }
+
+        .invoice-details td:first-child {
+            font-weight: 600;
+            color: #444;
+            width: 40%;
+        }
+
+        .bill-to {
+            margin-bottom: 40px;
+        }
+
+        .bill-to h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .client-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+
+        .project-overview {
+            margin-bottom: 40px;
+            background: #fef9e7;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #f0d000;
+        }
+
+        .project-overview h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #b8860b;
+            margin-bottom: 15px;
+        }
+
+        .project-description {
+            color: #444;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .services-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .services-table thead {
+            background: linear-gradient(135deg, #0066cc, #004499);
+            color: white;
+        }
+
+        .services-table th {
+            padding: 18px 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .services-table th:last-child {
+            text-align: right;
+        }
+
+        .services-table tbody tr {
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.2s;
+        }
+
+        .services-table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .services-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .services-table td {
+            padding: 15px;
+            vertical-align: top;
+        }
+
+        .phase-header {
+            background: #f1f5f9 !important;
+            font-weight: 700;
+            color: #0066cc;
+            border-top: 2px solid #0066cc;
+        }
+
+        .phase-header td {
+            padding: 20px 15px;
+            font-size: 15px;
+        }
+
+        .service-name {
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+
+        .service-description {
+            color: #666;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .hours {
+            font-weight: 600;
+            color: #444;
+            text-align: center;
+        }
+
+        .rate {
+            color: #666;
+            text-align: right;
+        }
+
+        .amount {
+            font-weight: 700;
+            color: #1a1a1a;
+            text-align: right;
+        }
+
+        .range-display {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 2px;
+        }
+
+        .floor-amount {
+            color: #28a745;
+            font-size: 12px;
+        }
+
+        .ceiling-amount {
+            color: #dc3545;
+            font-size: 12px;
+        }
+
+        .totals-section {
+            margin-top: 30px;
+            border-top: 2px solid #eee;
+            padding-top: 20px;
+        }
+
+        .totals-table {
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+        }
+
+        .totals-table td {
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .totals-table td:first-child {
+            text-align: left;
+            color: #444;
+        }
+
+        .totals-table td:last-child {
+            text-align: right;
+            font-weight: 600;
+        }
+
+        .subtotal-row {
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+
+        .total-row {
+            border-top: 2px solid #0066cc;
+            font-size: 18px;
+            font-weight: 700;
+            color: #0066cc;
+        }
+
+        .total-row td {
+            padding: 15px 0 10px 0;
+        }
+
+        .payment-terms {
+            margin-top: 40px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid #17a2b8;
+        }
+
+        .payment-terms h3 {
+            color: #17a2b8;
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .terms-list {
+            list-style: none;
+            color: #444;
+        }
+
+        .terms-list li {
+            padding: 6px 0;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .terms-list li:before {
+            content: "•";
+            color: #17a2b8;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+
+        .signature-section {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .signature-box {
+            width: 45%;
+        }
+
+        .signature-line {
+            border-bottom: 2px solid #ccc;
+            margin-bottom: 8px;
+            height: 40px;
+        }
+
+        .signature-label {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+
+        @media print {
+            body {
+                font-size: 12px;
+            }
+            .invoice-container {
+                padding: 20px;
+                box-shadow: none;
+            }
+            .services-table {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="company-info">
+                <div class="company-name">TrailGuide Agency</div>
+                <div class="tagline">Blazing Trails in Digital Innovation</div>
+                <div class="company-details">
+                    2847 Innovation Drive, Suite 400<br>
+                    San Francisco, CA 94107<br>
+                    Phone: (415) 555-0199<br>
+                    Email: billing@trailguide.agency<br>
+                    License: CA-DBA-2019-8847
+                </div>
+            </div>
+            <div class="invoice-meta">
+                <div class="invoice-title">INVOICE</div>
+                <div class="invoice-details">
+                    <table>
+                        <tr>
+                            <td>Invoice #:</td>
+                            <td><strong>TG-2025-0847</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Date:</td>
+                            <td><strong>September 8, 2025</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Due Date:</td>
+                            <td><strong>October 8, 2025</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Project:</td>
+                            <td><strong>ALAN-HIRSCH-2025</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Terms:</td>
+                            <td><strong>Net 30</strong></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bill To -->
+        <div class="bill-to">
+            <h3>Bill To</h3>
+            <div class="client-info">
+                <strong>Alan Hirsch Ministries</strong><br>
+                Attn: Finance Department<br>
+                1234 Missional Way<br>
+                Leadership Heights, CA 90210<br>
+                Tax ID: 95-1234567
+            </div>
+        </div>
+
+        <!-- Project Overview -->
+        <div class="project-overview">
+            <h3>Project Overview</h3>
+            <div class="project-description">
+                <strong>Alan Hirsch Learning Platform - Complete Digital Ecosystem Development</strong><br><br>
+                A comprehensive learning management platform featuring AI-powered conversational agents, interactive digital books, advanced assessment tools, community features, and partner organization integration. The platform combines cutting-edge AI technology with sophisticated content management, e-commerce capabilities, and real-time collaboration tools to create a revolutionary educational experience in missional church renewal and leadership development.
+            </div>
+        </div>
+
+        <!-- Services Table -->
+        <table class="services-table">
+            <thead>
+                <tr>
+                    <th style="width: 40%;">Service Description</th>
+                    <th style="width: 12%;">Hours</th>
+                    <th style="width: 15%;">Rate</th>
+                    <th style="width: 16%;">Floor Amount</th>
+                    <th style="width: 17%;">Ceiling Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Phase 1: Core Platform Architecture -->
+                <tr class="phase-header">
+                    <td colspan="5">PHASE 1: CORE PLATFORM ARCHITECTURE</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Next.js 15.5.0 Application Setup & Configuration</div>
+                        <div class="service-description">App Router implementation, TypeScript configuration, build optimization, deployment pipeline setup</div>
+                    </td>
+                    <td class="hours">180</td>
+                    <td class="rate">$185-225</td>
+                    <td class="amount floor-amount">$33,300</td>
+                    <td class="amount ceiling-amount">$40,500</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">TypeScript Implementation & Type Safety</div>
+                        <div class="service-description">Complete type definitions, interface design, generic implementations, compile-time safety</div>
+                    </td>
+                    <td class="hours">220</td>
+                    <td class="rate">$175-215</td>
+                    <td class="amount floor-amount">$38,500</td>
+                    <td class="amount ceiling-amount">$47,300</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Academic Duotone Design System</div>
+                        <div class="service-description">Custom CSS variables, theme system, typography stack, color palette, responsive utilities</div>
+                    </td>
+                    <td class="hours">280</td>
+                    <td class="rate">$165-205</td>
+                    <td class="amount floor-amount">$46,200</td>
+                    <td class="amount ceiling-amount">$57,400</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Component Library Development</div>
+                        <div class="service-description">80+ custom React components, accessibility compliance, mobile responsiveness, documentation</div>
+                    </td>
+                    <td class="hours">380</td>
+                    <td class="rate">$155-195</td>
+                    <td class="amount floor-amount">$58,900</td>
+                    <td class="amount ceiling-amount">$74,100</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Authentication & User Management System</div>
+                        <div class="service-description">Supabase integration, role-based access control, social login, session management, security policies</div>
+                    </td>
+                    <td class="hours">320</td>
+                    <td class="rate">$195-235</td>
+                    <td class="amount floor-amount">$62,400</td>
+                    <td class="amount ceiling-amount">$75,200</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Performance Optimization & SEO</div>
+                        <div class="service-description">Image optimization, lazy loading, caching strategy, Core Web Vitals, structured data</div>
+                    </td>
+                    <td class="hours">160</td>
+                    <td class="rate">$175-215</td>
+                    <td class="amount floor-amount">$28,000</td>
+                    <td class="amount ceiling-amount">$34,400</td>
+                </tr>
+
+                <!-- Phase 2: AI Integration -->
+                <tr class="phase-header">
+                    <td colspan="5">PHASE 2: AI INTEGRATION & VOICE AGENTS</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">OpenAI API Integration & Custom Agent Framework</div>
+                        <div class="service-description">Custom agent implementation, tool orchestration, streaming responses, conversation memory</div>
+                    </td>
+                    <td class="hours">240</td>
+                    <td class="rate">$225-275</td>
+                    <td class="amount floor-amount">$54,000</td>
+                    <td class="amount ceiling-amount">$66,000</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">APEST Voice Agent Development</div>
+                        <div class="service-description">5 specialized AI personalities, real-time WebSocket communication, voice synthesis integration</div>
+                    </td>
+                    <td class="hours">420</td>
+                    <td class="rate">$245-285</td>
+                    <td class="amount floor-amount">$102,900</td>
+                    <td class="amount ceiling-amount">$119,700</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">AI Tool Framework & Approval Workflow</div>
+                        <div class="service-description">5 specialized tools, human-in-loop approval system, tool parameter validation, execution tracking</div>
+                    </td>
+                    <td class="hours">280</td>
+                    <td class="rate">$215-255</td>
+                    <td class="amount floor-amount">$60,200</td>
+                    <td class="amount ceiling-amount">$71,400</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Streaming Chat Interface & Conversation Management</div>
+                        <div class="service-description">Real-time chat UI, conversation persistence, context management, mobile optimization</div>
+                    </td>
+                    <td class="hours">220</td>
+                    <td class="rate">$185-225</td>
+                    <td class="amount floor-amount">$40,700</td>
+                    <td class="amount ceiling-amount">$49,500</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Voice Synthesis & Speech Recognition</div>
+                        <div class="service-description">Speech-to-text integration, text-to-speech synthesis, audio processing, voice quality optimization</div>
+                    </td>
+                    <td class="hours">180</td>
+                    <td class="rate">$205-245</td>
+                    <td class="amount floor-amount">$36,900</td>
+                    <td class="amount ceiling-amount">$44,100</td>
+                </tr>
+
+                <!-- Phase 3: Content Management System -->
+                <tr class="phase-header">
+                    <td colspan="5">PHASE 3: CONTENT MANAGEMENT SYSTEM</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">MDX Processing & Book Management System</div>
+                        <div class="service-description">15+ interactive books, chapter navigation, metadata processing, search indexing</div>
+                    </td>
+                    <td class="hours">260</td>
+                    <td class="rate">$165-205</td>
+                    <td class="amount floor-amount">$42,900</td>
+                    <td class="amount ceiling-amount">$53,300</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Interactive EbookReader Component</div>
+                        <div class="service-description">Advanced reading experience, bookmarks, annotations, progress tracking, multimedia integration</div>
+                    </td>
+                    <td class="hours">320</td>
+                    <td class="rate">$175-215</td>
+                    <td class="amount floor-amount">$56,000</td>
+                    <td class="amount ceiling-amount">$68,800</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">TiptapEditor with Collaboration Features</div>
+                        <div class="service-description">Rich text editor, real-time collaboration, paywall markers, media embedding, version control</div>
+                    </td>
+                    <td class="hours">300</td>
+                    <td class="rate">$185-225</td>
+                    <td class="amount floor-amount">$55,500</td>
+                    <td class="amount ceiling-amount">$67,500</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Content Scheduling & Publishing System</div>
+                        <div class="service-description">Multi-platform publishing, workflow automation, content calendar, status tracking</div>
+                    </td>
+                    <td class="hours">180</td>
+                    <td class="rate">$155-195</td>
+                    <td class="amount floor-amount">$27,900</td>
+                    <td class="amount ceiling-amount">$35,100</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Media Library & Asset Management</div>
+                        <div class="service-description">File upload system, image optimization, CDN integration, asset organization</div>
+                    </td>
+                    <td class="hours">140</td>
+                    <td class="rate">$145-185</td>
+                    <td class="amount floor-amount">$20,300</td>
+                    <td class="amount ceiling-amount">$25,900</td>
+                </tr>
+
+                <!-- Phase 4: Learning Management System -->
+                <tr class="phase-header">
+                    <td colspan="5">PHASE 4: LEARNING MANAGEMENT SYSTEM</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Course Creation & Management Platform</div>
+                        <div class="service-description">Full course authoring, lesson organization, multimedia support, instructor dashboard</div>
+                    </td>
+                    <td class="hours">380</td>
+                    <td class="rate">$175-215</td>
+                    <td class="amount floor-amount">$66,500</td>
+                    <td class="amount ceiling-amount">$81,700</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Student Progress Tracking & Analytics</div>
+                        <div class="service-description">Learning analytics, progress visualization, completion tracking, engagement metrics</div>
+                    </td>
+                    <td class="hours">260</td>
+                    <td class="rate">$165-205</td>
+                    <td class="amount floor-amount">$42,900</td>
+                    <td class="amount ceiling-amount">$53,300</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">APEST Assessment Engine</div>
+                        <div class="service-description">Psychological assessment tools, scoring algorithms, interpretation generation, personalized recommendations</div>
+                    </td>
+                    <td class="hours">320</td>
+                    <td class="rate">$195-235</td>
+                    <td class="amount floor-amount">$62,400</td>
+                    <td class="amount ceiling-amount">$75,200</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Certificate & Achievement System</div>
+                        <div class="service-description">Automated certificate generation, badge system, milestone tracking, gamification elements</div>
+                    </td>
+                    <td class="hours">200</td>
+                    <td class="rate">$155-195</td>
+                    <td class="amount floor-amount">$31,000</td>
+                    <td class="amount ceiling-amount">$39,000</td>
+                </tr>
+
+                <!-- Phase 5: E-commerce & Payment Systems -->
+                <tr class="phase-header">
+                    <td colspan="5">PHASE 5: E-COMMERCE & PAYMENT SYSTEMS</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Stripe Payment Integration</div>
+                        <div class="service-description">Multi-tier subscription system, payment processing, webhook handling, security compliance</div>
+                    </td>
+                    <td class="hours">280</td>
+                    <td class="rate">$205-245</td>
+                    <td class="amount floor-amount">$57,400</td>
+                    <td class="amount ceiling-amount">$68,600</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Subscription Management System</div>
+                        <div class="service-description">Plan changes, proration handling, cancellation workflow, renewal automation, billing history</div>
+                    </td>
+                    <td class="hours">240</td>
+                    <td class="rate">$185-225</td>
+                    <td class="amount floor-amount">$44,400</td>
+                    <td class="amount ceiling-amount">$54,000</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Digital Store & Product Catalog</div>
+                        <div class="service-description">Individual purchases, digital product delivery, shopping cart, checkout optimization</div>
+                    </td>
+                    <td class="hours">180</td>
+                    <td class="rate">$165-205</td>
+                    <td class="amount floor-amount">$29,700</td>
+                    <td class="amount ceiling-amount">$36,900</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Affiliate Program System</div>
+                        <div class="service-description">Commission tracking, referral management, payout automation, affiliate dashboard</div>
+                    </td>
+                    <td class="hours">160</td>
+                    <td class="rate">$175-215</td>
+                    <td class="amount floor-amount">$28,000</td>
+                    <td class="amount ceiling-amount">$34,400</td>
+                </tr>
+
+                <!-- Phase 6: Community Features -->
+                <tr class="phase-header">
+                    <td colspan="5">PHASE 6: COMMUNITY & SOCIAL FEATURES</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Real-time Discussion Forums</div>
+                        <div class="service-description">Topic-based discussions, real-time updates, moderation tools, user reputation system</div>
+                    </td>
+                    <td class="hours">280</td>
+                    <td class="rate">$165-205</td>
+                    <td class="amount floor-amount">$46,200</td>
+                    <td class="amount ceiling-amount">$57,400</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">User Matching & Connection System</div>
+                        <div class="service-description">Interest-based matching, geographic connections, recommendation algorithms, networking features</div>
+                    </td>
+                    <td class="hours">220</td>
+                    <td class="rate">$185-225</td>
+                    <td class="amount floor-amount">$40,700</td>
+                    <td class="amount ceiling-amount">$49,500</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Notification & Activity System</div>
+                        <div class="service-description">Real-time notifications, activity feeds, email alerts, push notification infrastructure</div>
+                    </td>
+                    <td class="hours">160</td>
+                    <td class="rate">$155-195</td>
+                    <td class="amount floor-amount">$24,800</td>
+                    <td class="amount ceiling-amount">$31,200</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Social Integration & Sharing</div>
+                        <div class="service-description">Social media integration, content sharing, social login providers, viral features</div>
+                    </td>
+                    <td class="hours">100</td>
+                    <td class="rate">$145-185</td>
+                    <td class="amount floor-amount">$14,500</td>
+                    <td class="amount ceiling-amount">$18,500</td>
+                </tr>
+
+                <!-- Phase 7: Partner Ecosystem -->
+                <tr class="phase-header">
+                    <td colspan="5">PHASE 7: PARTNER ECOSYSTEM INTEGRATION</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Partner Organization Portal Development</div>
+                        <div class="service-description">6 dedicated partner pages, custom layouts, cross-referencing system, partner-specific features</div>
+                    </td>
+                    <td class="hours">220</td>
+                    <td class="rate">$155-195</td>
+                    <td class="amount floor-amount">$34,100</td>
+                    <td class="amount ceiling-amount">$42,900</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">UTM Tracking & Analytics System</div>
+                        <div class="service-description">Attribution tracking, referral analytics, conversion measurement, ROI reporting for partnerships</div>
+                    </td>
+                    <td class="hours">180</td>
+                    <td class="rate">$175-215</td>
+                    <td class="amount floor-amount">$31,500</td>
+                    <td class="amount ceiling-amount">$38,700</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Resource Sharing Platform</div>
+                        <div class="service-description">Cross-organizational content sharing, collaborative materials, unified resource library</div>
+                    </td>
+                    <td class="hours">160</td>
+                    <td class="rate">$165-205</td>
+                    <td class="amount floor-amount">$26,400</td>
+                    <td class="amount ceiling-amount">$32,800</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Partner Integration APIs</div>
+                        <div class="service-description">Data synchronization, webhook integrations, partner dashboard APIs, third-party system connections</div>
+                    </td>
+                    <td class="hours">120</td>
+                    <td class="rate">$195-235</td>
+                    <td class="amount floor-amount">$23,400</td>
+                    <td class="amount ceiling-amount">$28,200</td>
+                </tr>
+
+                <!-- Phase 8: Advanced Features -->
+                <tr class="phase-header">
+                    <td colspan="5">PHASE 8: ADVANCED FEATURES & ANALYTICS</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Full-Text Search Engine</div>
+                        <div class="service-description">Advanced search across books, courses, discussions, relevance ranking, faceted search</div>
+                    </td>
+                    <td class="hours">300</td>
+                    <td class="rate">$185-225</td>
+                    <td class="amount floor-amount">$55,500</td>
+                    <td class="amount ceiling-amount">$67,500</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Email Marketing & Automation System</div>
+                        <div class="service-description">Newsletter editor, automation sequences, segmentation, A/B testing, delivery optimization</div>
+                    </td>
+                    <td class="hours">240</td>
+                    <td class="rate">$165-205</td>
+                    <td class="amount floor-amount">$39,600</td>
+                    <td class="amount ceiling-amount">$49,200</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Analytics & Business Intelligence Dashboard</div>
+                        <div class="service-description">User behavior analytics, revenue tracking, engagement metrics, custom reporting</div>
+                    </td>
+                    <td class="hours">280</td>
+                    <td class="rate">$195-235</td>
+                    <td class="amount floor-amount">$54,600</td>
+                    <td class="amount ceiling-amount">$65,800</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Progressive Web App Features</div>
+                        <div class="service-description">Offline support, mobile optimization, app-like experience, service worker implementation</div>
+                    </td>
+                    <td class="hours">200</td>
+                    <td class="rate">$175-215</td>
+                    <td class="amount floor-amount">$35,000</td>
+                    <td class="amount ceiling-amount">$43,000</td>
+                </tr>
+
+                <!-- Phase 9: Quality Assurance & Testing -->
+                <tr class="phase-header">
+                    <td colspan="5">PHASE 9: QUALITY ASSURANCE & TESTING</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Comprehensive Testing Suite</div>
+                        <div class="service-description">Unit testing, integration testing, end-to-end testing, automated test suites</div>
+                    </td>
+                    <td class="hours">320</td>
+                    <td class="rate">$145-185</td>
+                    <td class="amount floor-amount">$46,400</td>
+                    <td class="amount ceiling-amount">$59,200</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Security Audit & Penetration Testing</div>
+                        <div class="service-description">Security assessment, vulnerability testing, compliance validation, security hardening</div>
+                    </td>
+                    <td class="hours">160</td>
+                    <td class="rate">$225-275</td>
+                    <td class="amount floor-amount">$36,000</td>
+                    <td class="amount ceiling-amount">$44,000</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Performance Testing & Optimization</div>
+                        <div class="service-description">Load testing, performance profiling, optimization implementation, scalability assessment</div>
+                    </td>
+                    <td class="hours">140</td>
+                    <td class="rate">$185-225</td>
+                    <td class="amount floor-amount">$25,900</td>
+                    <td class="amount ceiling-amount">$31,500</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">User Acceptance Testing & Bug Resolution</div>
+                        <div class="service-description">UAT coordination, bug tracking, resolution implementation, final quality validation</div>
+                    </td>
+                    <td class="hours">120</td>
+                    <td class="rate">$155-195</td>
+                    <td class="amount floor-amount">$18,600</td>
+                    <td class="amount ceiling-amount">$23,400</td>
+                </tr>
+
+                <!-- Phase 10: Documentation & Deployment -->
+                <tr class="phase-header">
+                    <td colspan="5">PHASE 10: DOCUMENTATION & DEPLOYMENT</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Technical Documentation</div>
+                        <div class="service-description">API documentation, system architecture docs, deployment guides, troubleshooting manuals</div>
+                    </td>
+                    <td class="hours">160</td>
+                    <td class="rate">$135-175</td>
+                    <td class="amount floor-amount">$21,600</td>
+                    <td class="amount ceiling-amount">$28,000</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">User Training & Knowledge Transfer</div>
+                        <div class="service-description">Admin training sessions, user guides, video tutorials, knowledge base creation</div>
+                    </td>
+                    <td class="hours">120</td>
+                    <td class="rate">$125-165</td>
+                    <td class="amount floor-amount">$15,000</td>
+                    <td class="amount ceiling-amount">$19,800</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Production Deployment & DevOps Setup</div>
+                        <div class="service-description">Production environment setup, CI/CD pipeline, monitoring configuration, backup systems</div>
+                    </td>
+                    <td class="hours">140</td>
+                    <td class="rate">$195-235</td>
+                    <td class="amount floor-amount">$27,300</td>
+                    <td class="amount ceiling-amount">$32,900</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Go-Live Support & Monitoring</div>
+                        <div class="service-description">Launch support, system monitoring setup, initial bug fixes, performance monitoring</div>
+                    </td>
+                    <td class="hours">80</td>
+                    <td class="rate">$185-225</td>
+                    <td class="amount floor-amount">$14,800</td>
+                    <td class="amount ceiling-amount">$18,000</td>
+                </tr>
+
+                <!-- Project Management -->
+                <tr class="phase-header">
+                    <td colspan="5">PROJECT MANAGEMENT & COORDINATION</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Senior Project Management</div>
+                        <div class="service-description">Overall project coordination, stakeholder management, risk mitigation, delivery oversight</div>
+                    </td>
+                    <td class="hours">480</td>
+                    <td class="rate">$165-205</td>
+                    <td class="amount floor-amount">$79,200</td>
+                    <td class="amount ceiling-amount">$98,400</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Technical Architecture Consulting</div>
+                        <div class="service-description">System design oversight, technology decisions, scalability planning, code review</div>
+                    </td>
+                    <td class="hours">240</td>
+                    <td class="rate">$225-275</td>
+                    <td class="amount floor-amount">$54,000</td>
+                    <td class="amount ceiling-amount">$66,000</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Quality Assurance Management</div>
+                        <div class="service-description">QA strategy, testing coordination, quality standards enforcement, release validation</div>
+                    </td>
+                    <td class="hours">180</td>
+                    <td class="rate">$155-195</td>
+                    <td class="amount floor-amount">$27,900</td>
+                    <td class="amount ceiling-amount">$35,100</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="service-name">Client Communication & Reporting</div>
+                        <div class="service-description">Regular status updates, milestone reporting, stakeholder presentations, change management</div>
+                    </td>
+                    <td class="hours">120</td>
+                    <td class="rate">$145-185</td>
+                    <td class="amount floor-amount">$17,400</td>
+                    <td class="amount ceiling-amount">$22,200</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Totals Section -->
+        <div class="totals-section">
+            <table class="totals-table">
+                <tr>
+                    <td>Subtotal (Development Services):</td>
+                    <td class="range-display">
+                        <span class="floor-amount">$1,642,100</span>
+                        <span class="ceiling-amount">$2,026,300</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Project Management & Coordination:</td>
+                    <td class="range-display">
+                        <span class="floor-amount">$178,500</span>
+                        <span class="ceiling-amount">$221,700</span>
+                    </td>
+                </tr>
+                <tr class="subtotal-row">
+                    <td><strong>Subtotal:</strong></td>
+                    <td class="range-display">
+                        <span class="floor-amount"><strong>$1,820,600</strong></span>
+                        <span class="ceiling-amount"><strong>$2,248,000</strong></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Contingency (5% - 7%):</td>
+                    <td class="range-display">
+                        <span class="floor-amount">$91,030</span>
+                        <span class="ceiling-amount">$157,360</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Agency Overhead & Profit (12% - 15%):</td>
+                    <td class="range-display">
+                        <span class="floor-amount">$218,472</span>
+                        <span class="ceiling-amount">$337,200</span>
+                    </td>
+                </tr>
+                <tr class="total-row">
+                    <td><strong>TOTAL PROJECT COST:</strong></td>
+                    <td class="range-display">
+                        <span class="floor-amount"><strong>$2,130,102</strong></span>
+                        <span class="ceiling-amount"><strong>$2,742,560</strong></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+
+        <!-- Payment Terms -->
+        <div class="payment-terms">
+            <h3>Payment Terms & Project Details</h3>
+            <ul class="terms-list">
+                <li><strong>Payment Schedule:</strong> 30% upon contract signing, 40% at project midpoint milestone, 30% upon final delivery and acceptance</li>
+                <li><strong>Project Timeline:</strong> 12-16 months from project initiation to final delivery</li>
+                <li><strong>Team Allocation:</strong> 12-18 senior developers, 2-3 AI specialists, 1 senior project manager, 1 technical architect</li>
+                <li><strong>Included Services:</strong> All development, testing, documentation, training, 60 days post-launch support</li>
+                <li><strong>Change Requests:</strong> Additional features or scope changes billed at prevailing hourly rates</li>
+                <li><strong>Intellectual Property:</strong> All custom code and assets transfer to client upon final payment</li>
+                <li><strong>Warranty:</strong> 90 days warranty on all development work, excluding third-party integrations</li>
+                <li><strong>Support & Maintenance:</strong> Optional ongoing support available at $15,000-$25,000/month</li>
+            </ul>
+        </div>
+
+        <!-- Signature Section -->
+        <div class="signature-section">
+            <div class="signature-box">
+                <div class="signature-line"></div>
+                <div class="signature-label">
+                    <strong>Marcus TrailBlazer</strong><br>
+                    Senior Partner, TrailGuide Agency<br>
+                    Date: _______________
+                </div>
+            </div>
+            <div class="signature-box">
+                <div class="signature-line"></div>
+                <div class="signature-label">
+                    <strong>Client Acceptance</strong><br>
+                    Alan Hirsch Ministries<br>
+                    Date: _______________
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>This invoice represents a comprehensive digital platform development project requiring specialized expertise in AI integration, educational technology, and complex system architecture. All costs are based on current market rates for senior-level development resources in the San Francisco Bay Area technology sector.</p>
+            <p><strong>TrailGuide Agency</strong> | Licensed Digital Agency CA-DBA-2019-8847 | Equal Opportunity Employer</p>
+        </div>
+    </div>
+</body>
+</html>

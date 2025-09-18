@@ -111,7 +111,7 @@ export default function Membership() {
                 ))}
               </ul>
 
-              <button className="w-full py-3 px-4 rounded-lg font-medium bg-primary text-primary-foreground hover:bg-primary/90 shadow-md transition-all">
+              <button className="w-full btn-primary">
                 Start Free Trial
               </button>
             </div>

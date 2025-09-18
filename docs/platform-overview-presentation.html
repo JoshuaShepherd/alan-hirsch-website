@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Platform for Thought Leaders - Investment Overview</title>
+    <style>
+        :root {
+            --primary-color: #1D4A38;
+            --secondary-color: #B2613E;
+            --accent-gold: #F4B942;
+            --text-dark: #111111;
+            --text-light: #555555;
+            --background: #FFFFFF;
+            --surface: #F8F8F8;
+            --border-light: #CCCCCC;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --print-border: #000000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times', 'Times New Roman', Georgia, serif;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background: var(--background);
+        }
+
+        /* Print-specific styles */
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            body {
+                background: white !important;
+                color: black !important;
+                font-size: 12pt;
+                line-height: 1.4;
+            }
+            
+            .no-print {
+                display: none !important;
+            }
+            
+            .page-break {
+                page-break-before: always;
+            }
+            
+            .page-break-avoid {
+                page-break-inside: avoid;
+            }
+            
+            h1, h2, h3, h4, h5, h6 {
+                page-break-after: avoid;
+                color: var(--primary-color) !important;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+                margin-bottom: 2rem;
+            }
+            
+            .card {
+                border: 2px solid var(--border-light) !important;
+                box-shadow: none !important;
+                page-break-inside: avoid;
+                margin-bottom: 1rem;
+            }
+            
+            .grid {
+                break-inside: avoid;
+            }
+            
+            .bar-chart {
+                height: 200px !important;
+            }
+            
+            .chart-container {
+                height: 220px !important;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            background: white;
+            color: var(--text-dark);
+            padding: 3rem 0;
+            text-align: center;
+            position: relative;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        header::before {
+            display: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .highlight-box {
+            background: var(--surface);
+            border: 2px solid var(--primary-color);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-gold));
+            border-radius: 2px;
+        }
+
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        .grid-4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+
+        .card {
+            background: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            border: 2px solid var(--border-light);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-color);
+        }
+
+        .card:hover {
+            border-color: var(--primary-color);
+        }
+
+        .pillar-card {
+            text-align: center;
+        }
+
+        .pillar-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: white;
+            border: 3px solid var(--secondary-color);
+        }
+
+        .revenue-chart {
+            background: var(--surface);
+            border: 2px solid var(--border-light);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin: 2rem 0;
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: end;
+            height: 250px;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .bar {
+            flex: 1;
+            background: var(--primary-color);
+            border: 2px solid var(--secondary-color);
+            border-radius: 0.25rem 0.25rem 0 0;
+            position: relative;
+            display: flex;
+            align-items: end;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            padding: 0.5rem 0.25rem;
+        }
+
+        .bar-label {
+            position: absolute;
+            bottom: -2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .comparison-table {
+            background: white;
+            border: 2px solid var(--border-light);
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: var(--surface);
+        }
+
+        .price-tag {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .big-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            line-height: 1;
+        }
+
+        .metric {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .metric-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--success);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            background: var(--border-light);
+            height: 8px;
+            border: 1px solid var(--text-light);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--success);
+            border-radius: 3px;
+        }
+
+        .team-section {
+            background: var(--surface);
+            border: 2px solid var(--border-light);
+            border-radius: 0.5rem;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .founder-card {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: white;
+            border: 2px solid var(--border-light);
+            border-radius: 0.5rem;
+        }
+
+        .founder-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            border: 3px solid var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .founder-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .founder-info .role {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .competitive-advantage {
+            background: var(--surface);
+            color: var(--text-dark);
+            border: 3px solid var(--primary-color);
+            border-radius: 0.5rem;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .advantage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .advantage-item {
+            background: white;
+            border: 2px solid var(--border-light);
+            border-radius: 0.25rem;
+            padding: 1rem;
+        }
+
+        .advantage-item h4 {
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .cta-section {
+            background: var(--surface);
+            color: var(--text-dark);
+            text-align: center;
+            padding: 3rem 2rem;
+            border: 3px solid var(--secondary-color);
+            border-radius: 0.5rem;
+            margin: 3rem 0;
+        }
+
+        .cta-button {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border: 2px solid var(--secondary-color);
+            border-radius: 0.25rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .cta-button:hover {
+            background: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .subtitle { font-size: 1rem; }
+            .section-title { font-size: 1.5rem; }
+            .container { padding: 0 1rem; }
+            .founder-card { flex-direction: column; text-align: center; }
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 1rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Digital Platform for Thought Leaders</h1>
+                <p class="subtitle">The Complete Business Ecosystem for Modern Intellectual Leadership</p>
+                <div class="highlight-box">
+                    <div class="status-badge">🚀 75-80% Complete</div>
+                    <p><strong>Platform Status:</strong> Integration phase with 30-45 day timeline to launch readiness</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Platform Overview -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">What We're Building</h2>
+                <div class="grid grid-2">
+                    <div class="card page-break-avoid">
+                        <h3>The Problem</h3>
+                        <p>Thought leaders with sophisticated frameworks struggle to build sustainable digital businesses. They're forced to use 10+ different tools, manage complex technical infrastructure, and lose focus on their core expertise while trying to reach audiences and generate revenue.</p>
+                    </div>
+                    <div class="card page-break-avoid">
+                        <h3>Our Solution</h3>
+                        <p>A complete business-in-a-box platform that bridges intellectual depth with commercial viability. AI-powered content creation, sophisticated learning management, automated revenue optimization, and multi-platform distribution—all in one integrated system.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Four Pillars -->
+        <section class="section page-break" style="background: var(--surface);">
+            <div class="container">
+                <h2 class="section-title">The Four Pillars</h2>
+                <div class="grid grid-4">
+                    <div class="card pillar-card page-break-avoid">
+                        <div class="pillar-icon">🎯</div>
+                        <h3>Content Creation Laboratory</h3>
+                        <p>AI-assisted content creation with block-based editor, SEO optimization, and multi-format publishing</p>
+                    </div>
+                    <div class="card pillar-card page-break-avoid">
+                        <div class="pillar-icon">🎓</div>
+                        <h3>Learning Management Ecosystem</h3>
+                        <p>Structured courses, progress tracking, assessments, and community-driven learning experiences</p>
+                    </div>
+                    <div class="card pillar-card page-break-avoid">
+                        <div class="pillar-icon">💰</div>
+                        <h3>Revenue Optimization Engine</h3>
+                        <p>Tiered subscriptions, course sales, automated funnels, and comprehensive financial analytics</p>
+                    </div>
+                    <div class="card pillar-card page-break-avoid">
+                        <div class="pillar-icon">📊</div>
+                        <h3>Audience Intelligence System</h3>
+                        <p>Data-driven insights, engagement analytics, and AI-powered content recommendations</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Current Partners & Equity -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Strategic Partners & Equity Partners</h2>
+                <div class="team-section page-break-avoid">
+                    <div class="grid grid-2">
+                        <div class="founder-card">
+                            <div class="founder-avatar">AH</div>
+                            <div class="founder-info">
+                                <h3>Alan Hirsch</h3>
+                                <p class="role">Founding Customer & Equity Partner</p>
+                                <p>Internationally recognized thought leader in missional church and organizational transformation. Author of 20+ books, consultant to major organizations worldwide. Provides content strategy, theological expertise, and initial customer base.</p>
+                            </div>
+                        </div>
+                        <div class="founder-card">
+                            <div class="founder-avatar">BH</div>
+                            <div class="founder-info">
+                                <h3>Brad Hoffstadter</h3>
+                                <p class="role">Customer & Potential Equity Partner</p>
+                                <p>Successful entrepreneur and business strategist with extensive experience in digital transformation and revenue optimization. Provides business development expertise and strategic guidance.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Revenue Model & Projections -->
+        <section class="section page-break" style="background: var(--surface);">
+            <div class="container">
+                <h2 class="section-title">Revenue Model & Financial Projections</h2>
+                
+                <div class="grid grid-3">
+                    <div class="card">
+                        <h3>Pricing Tiers (CORRECTED)</h3>
+                        <div style="margin: 2rem 0;">
+                            <div style="margin-bottom: 1rem;">
+                                <strong>Tier 1 (First 100):</strong> <span class="price-tag">$1,000 + 10% revenue share</span><br>
+                                <small>Pioneers - Full platform access</small>
+                            </div>
+                            <div style="margin-bottom: 1rem;">
+                                <strong>Tier 2 (101-500):</strong> <span class="price-tag">$2,000 + 10% revenue share</span><br>
+                                <small>Builders - Advanced features + network effects</small>
+                            </div>
+                            <div style="margin-bottom: 1rem;">
+                                <strong>Tier 3 (501-1000):</strong> <span class="price-tag">$5,000 + 10% revenue share</span><br>
+                                <small>Elite - Full network + custom features</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Revenue Model (CORRECTED)</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 1rem;">� <strong>Entry Fees:</strong> $1K → $2K → $5K per user onboarding</li>
+                            <li style="margin-bottom: 1rem;">📈 <strong>Revenue Share:</strong> 10% of all user subscription revenue</li>
+                            <li style="margin-bottom: 1rem;">🎓 <strong>Course Sales:</strong> Transaction fees on educational content</li>
+                            <li style="margin-bottom: 1rem;">🤝 <strong>Network Effects:</strong> Value increases with each user</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Market Positioning (UPDATED)</h3>
+                        <p>Exclusive positioning in the creator economy, targeting thought leaders with 10K+ followers who generate $100K+ annually. <strong>Capped at 1,000 users maximum</strong> creating scarcity and premium positioning in the movement leadership space.</p>
+                    </div>
+                </div>
+
+                <!-- Revenue Projections Chart -->
+                <div class="revenue-chart">
+                    <h3 style="text-align: center; margin-bottom: 2rem;">Revenue Projections - Movement OS (CORRECTED)</h3>
+                    <div class="bar-chart">
+                        <div class="bar" style="height: 25%;">
+                            <span>$160K</span>
+                            <div class="bar-label">100 Users<br>$100K + Revenue Share</div>
+                        </div>
+                        <div class="bar" style="height: 60%;">
+                            <span>$900K</span>
+                            <div class="bar-label">500 Users<br>$500K + Growing Share</div>
+                        </div>
+                        <div class="bar" style="height: 100%;">
+                            <span>$3.4M+</span>
+                            <div class="bar-label">1000 Users<br>$3.4M + Major Share</div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-3" style="margin-top: 3rem;">
+                        <div class="metric">
+                            <div class="metric-value">$160K</div>
+                            <div class="metric-label">Annual Revenue at 100 Users<br><small>Base fees + 10% revenue share</small></div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">$900K</div>
+                            <div class="metric-label">Annual Revenue at 500 Users<br><small>Scaling base + growing network</small></div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">$3.4M+</div>
+                            <div class="metric-label">Base Revenue at 1000 Users<br><small>+ Significant revenue share upside</small></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cost Comparison -->
+        <section class="section page-break">
+            <div class="container">
+                <h2 class="section-title">Cost Comparison: Build vs Buy</h2>
+                
+                <div class="comparison-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Approach</th>
+                                <th>Initial Cost</th>
+                                <th>Annual Cost</th>
+                                <th>Time to Market</th>
+                                <th>Risk Level</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Agency Development</strong></td>
+                                <td class="price-tag">$250K - $500K</td>
+                                <td class="price-tag">$100K - $200K</td>
+                                <td>12-18 months</td>
+                                <td style="color: var(--warning);">High</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SaaS Tool Stack</strong></td>
+                                <td class="price-tag">$50K - $100K</td>
+                                <td class="price-tag">$60K - $120K</td>
+                                <td>6-12 months</td>
+                                <td style="color: var(--warning);">Medium</td>
+                            </tr>
+                            <tr style="background: rgba(16, 185, 129, 0.1);">
+                                <td><strong>Movement OS</strong></td>
+                                <td class="price-tag">$1K - $5K</td>
+                                <td class="price-tag">Revenue Share Only</td>
+                                <td>30-45 days</td>
+                                <td style="color: var(--success);">Low</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="grid grid-2" style="margin-top: 3rem;">
+                    <div class="card">
+                        <h3>Agency Development Reality</h3>
+                        <ul>
+                            <li>$300K+ average total cost</li>
+                            <li>18+ month development timeline</li>
+                            <li>Ongoing maintenance costs $8K-15K/month</li>
+                            <li>High technical risk and vendor dependency</li>
+                            <li>Limited AI integration capabilities</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Movement OS Advantage</h3>
+                        <ul>
+                            <li>One-time entry fee vs ongoing subscriptions</li>
+                            <li>Revenue share aligns success incentives</li>
+                            <li>30-45 day deployment vs 18+ months</li>
+                            <li>Proven platform with 80% completion</li>
+                            <li>Network effects amplify individual success</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Competitive Advantages -->
+        <div class="competitive-advantage page-break-avoid">
+            <div class="container">
+                <h2 style="color: var(--primary-color); text-align: center; margin-bottom: 2rem;">Why We Win</h2>
+                <div class="advantage-grid">
+                    <div class="advantage-item">
+                        <h4>AI-First Architecture</h4>
+                        <p>Built with AI integration from the ground up, not bolted on as an afterthought. Enables sophisticated content optimization and automation.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h4>Educational Focus</h4>
+                        <p>Designed specifically for thought leaders and educators, with specialized tools for assessments, learning paths, and community building.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h4>Complete Integration</h4>
+                        <p>Single platform eliminates tool fatigue and data silos. Everything works together seamlessly from content creation to revenue generation.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h4>Proven Market</h4>
+                        <p>Launching with established thought leaders like Alan Hirsch provides immediate validation and customer feedback for rapid iteration.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Development Progress -->
+        <section class="section page-break">
+            <div class="container">
+                <h2 class="section-title">Development Progress</h2>
+                
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3>✅ Completed (80%)</h3>
+                        <div style="margin: 1rem 0;">
+                            <div>Database Architecture & Multi-tenancy</div>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
+                        </div>
+                        <div style="margin: 1rem 0;">
+                            <div>User Authentication & Management</div>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
+                        </div>
+                        <div style="margin: 1rem 0;">
+                            <div>Content Management System</div>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 95%;"></div></div>
+                        </div>
+                        <div style="margin: 1rem 0;">
+                            <div>Payment & Subscription Infrastructure</div>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 90%;"></div></div>
+                        </div>
+                        <div style="margin: 1rem 0;">
+                            <div>AI Integration Framework</div>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>🚧 In Progress (20%)</h3>
+                        <div style="margin: 1rem 0;">
+                            <div>Database Integration & API Connections</div>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 60%;"></div></div>
+                        </div>
+                        <div style="margin: 1rem 0;">
+                            <div>Multi-Platform Publishing</div>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 40%;"></div></div>
+                        </div>
+                        <div style="margin: 1rem 0;">
+                            <div>Real-Time Collaboration Features</div>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 30%;"></div></div>
+                        </div>
+                        <div style="margin: 1rem 0;">
+                            <div>Mobile Optimization</div>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 70%;"></div></div>
+                        </div>
+                        <div style="margin: 1rem 0;">
+                            <div>Performance Optimization</div>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 50%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-3" style="margin-top: 3rem;">
+                    <div class="metric">
+                        <div class="metric-value">30-45</div>
+                        <div class="metric-label">Days to Launch Ready</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">164</div>
+                        <div class="metric-label">Navigable Pages Built</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">75%</div>
+                        <div class="metric-label">Platform Complete</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <div class="cta-section page-break-avoid no-print">
+            <div class="container">
+                <h2 style="color: var(--primary-color); margin-bottom: 1rem;">Ready to Transform Thought Leadership?</h2>
+                <p style="font-size: 1.1rem;">Join us in building the future of digital education and content creation</p>
+                <button class="cta-button">Let's Discuss Partnership Opportunities</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Print-optimized version - minimal JavaScript
+        window.addEventListener('load', function() {
+            // Add print styles when needed
+            if (window.matchMedia) {
+                var mediaQueryList = window.matchMedia('print');
+                mediaQueryList.addListener(function(mql) {
+                    if (mql.matches) {
+                        document.body.classList.add('printing');
+                    } else {
+                        document.body.classList.remove('printing');
+                    }
+                });
+            }
+        });
+
+        // Simple smooth scrolling for any internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

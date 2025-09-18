@@ -43,7 +43,7 @@ const MenuButton = ({
     title={title}
     className={`p-2 rounded-md transition-colors ${
       isActive 
-        ? 'bg-primary text-primary-foreground' 
+        ? 'bg-academic text-academic-foreground' 
         : 'text-foreground hover:bg-muted'
     } ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
   >

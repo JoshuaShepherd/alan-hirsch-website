@@ -200,7 +200,7 @@ export function MemberDashboard({ user }: DashboardProps) {
       <div>
         <div className="flex justify-between items-center mb-4">
           <h3 className="font-display text-xl font-semibold text-foreground">Latest Content</h3>
-          <Link href="/content" className="text-primary hover:text-primary/80 text-sm font-medium">
+          <Link href="/content" className="text-academic hover-academic text-sm font-medium">
             View all →
           </Link>
         </div>
@@ -247,7 +247,7 @@ export function MemberDashboard({ user }: DashboardProps) {
                     {'lessons' in item && <span>{item.lessons} lessons</span>}
                   </div>
                   
-                  <button className="text-primary hover:text-primary/80 text-sm font-medium">
+                  <button className="text-academic hover-academic text-sm font-medium">
                     {item.type === 'course' ? 'Start Course' : 
                      item.type === 'video' ? 'Watch Now' : 'Read More'}
                   </button>
@@ -296,7 +296,7 @@ export function MemberDashboard({ user }: DashboardProps) {
                 )}
               </div>
               
-              <button className="text-primary hover:text-primary/80 text-sm font-medium ml-4">
+              <button className="text-academic hover-academic text-sm font-medium ml-4">
                 {item.type === 'book' ? 'Continue Reading' : 
                  item.type === 'video' ? 'Watch' : 'Read'}
               </button>

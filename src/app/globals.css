@@ -1,28 +1,60 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Aceternity Animations */
+@keyframes gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
+.bg-size-200 {
+  background-size: 200% 200%;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  /* Editorial Modern Colors */
+  /* Editorial Modern Colors - Updated Palette */
   --color-paper: #F8F8F6;
   --color-stone: #E3E3E0;
   --color-ink: #111111;
   --color-graphite: #444444;
-  --color-forest: #541388;
-  --color-rust: #B2613E;
-  --color-soft-blue: #4B83C2;
+  --color-indigo: #541388;
   
-  /* Display Typography */
+  /* Academic Duotone + Strategic Purple Palette */
+  --paper: #F8F8F6;        /* Warm white - primary background */
+  --stone: #E3E3E0;        /* Light gray - subtle divisions */
+  --ink: #111111;          /* True black - primary text */
+  --graphite: #444444;     /* Medium gray - secondary text */
+  --indigo: #541388;       /* Academic purple - strategic accent only */
+  
+  /* Academic accent colors for strategic use */
+  --rust: #B2613E;         /* Warm terracotta - for warmth and engagement */
+  --forest: #1D4A38;       /* Deep green - for growth and life concepts */
+  --amber: #D69E2E;        /* Golden yellow - for highlights and wisdom */
+
+  /* Academic Sophisticate Typography Stack */
   --font-display: var(--font-display);
   --font-body: var(--font-body);
-  
+  --font-serif-alt: var(--font-serif-alt);
+  --font-sans-alt: var(--font-sans-alt);
+  --font-mono: var(--font-mono);
+
   /* Editorial Modern Spacing */
   --spacing-section: 4rem;
   --spacing-section-lg: 6rem;
   --max-width-content: 700px;
   --max-width-container: 1200px;
-  
+
   /* Typography Scale */
   --font-size-display-xl: clamp(3rem, 6vw, 5rem);
   --font-size-display-lg: clamp(2.5rem, 5vw, 4rem);
@@ -31,7 +63,18 @@
   --font-size-body: 1.125rem;
   --line-height-display: 1.2;
   --line-height-body: 1.7;
-  
+
+  /* LMS Design Tokens */
+  --lms-brand: #3B82F6;
+  --lms-accent: #22C55E;
+  --lms-surface: #0B1020;
+  --lms-card: #111827;
+  --lms-border: #1F2937;
+  --lms-text: #F9FAFB;
+  --lms-muted: #9CA3AF;
+  --lms-radius: 16px;
+  --lms-radius-lg: 24px;
+
   /* Standard shadcn variables */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -72,73 +115,107 @@
 
 :root {
   --radius: 0.25rem;
-  /* Editorial Modern Base Colors */
-  --background: #F8F8F6; /* Paper White */
-  --foreground: #111111; /* Ink Black */
-  --card: #F8F8F6;
-  --card-foreground: #111111;
-  --popover: #F8F8F6;
-  --popover-foreground: #111111;
-  --primary: #541388; /* Forest Green */
-  --primary-foreground: #F8F8F6;
-  --secondary: #E3E3E0; /* Stone Gray */
-  --secondary-foreground: #111111;
-  --muted: #E3E3E0;
-  --muted-foreground: #444444; /* Graphite Gray */
-  --accent: #B2613E; /* Rust Copper */
-  --accent-foreground: #F8F8F6;
-  --destructive: #dc2626;
-  --destructive-foreground: #F8F8F6;
-  --border: #E3E3E0;
-  --input: #E3E3E0;
-  --ring: #541388;
-  --chart-1: #541388;
-  --chart-2: #B2613E;
-  --chart-3: #4B83C2;
-  --chart-4: #444444;
-  --chart-5: #E3E3E0;
-  --sidebar: #F8F8F6;
+  
+  /* Academic Duotone Light Mode - Sophisticated Paper & Ink Foundation */
+  --background: #F8F8F6;      /* Paper - warm white background */
+  --foreground: #111111;      /* Ink - true black for maximum readability */
+  
+  /* Card and surface colors - maintaining duotone simplicity */
+  --card: #FFFFFF;            /* Pure white cards for subtle layering */
+  --card-foreground: #111111; /* Ink on cards */
+  --popover: #FFFFFF;         /* Pure white popovers */
+  --popover-foreground: #111111; /* Ink text */
+  
+  /* Strategic purple - used sparingly for academic authority */
+  --primary: #541388;         /* Academic purple - links, CTAs, key actions */
+  --primary-foreground: #FFFFFF; /* White text on purple */
+  
+  /* Duotone grays - the foundation of the design */
+  --secondary: #F5F5F5;       /* Very light gray - subtle backgrounds */
+  --secondary-foreground: #111111; /* Ink on light backgrounds */
+  --muted: #E8E8E8;          /* Light gray - borders, dividers */
+  --muted-foreground: #666666; /* Medium gray - secondary text */
+  
+  /* Accent - strategic purple usage */
+  --accent: #541388;          /* Same as primary - consistent purple accent */
+  --accent-foreground: #FFFFFF; /* White on purple */
+  
+  /* System colors */
+  --destructive: #DC2626;     /* Red for errors/warnings */
+  --destructive-foreground: #FFFFFF; /* White on red */
+  
+  /* Interactive elements */
+  --border: #E8E8E8;         /* Light gray borders */
+  --input: #FFFFFF;          /* White input backgrounds */
+  --ring: #541388;           /* Purple focus rings */
+  
+  /* Charts - duotone with strategic color */
+  --chart-1: #541388;        /* Purple */
+  --chart-2: #111111;        /* Black */
+  --chart-3: #666666;        /* Medium gray */
+  --chart-4: #CCCCCC;        /* Light gray */
+  --chart-5: #F8F8F6;        /* Paper */
+  
+  /* Sidebar - maintaining duotone */
+  --sidebar: #FFFFFF;
   --sidebar-foreground: #111111;
-  --sidebar-primary: #541388;
-  --sidebar-primary-foreground: #F8F8F6;
-  --sidebar-accent: #E3E3E0;
+  --sidebar-primary: #541388;  /* Strategic purple */
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F5F5F5;
   --sidebar-accent-foreground: #111111;
-  --sidebar-border: #E3E3E0;
+  --sidebar-border: #E8E8E8;
   --sidebar-ring: #541388;
 }
 
 .dark {
-  --background: #0F0F0F;
-  --foreground: #FAFAFA;
-  --card: #1C1C1C;
-  --card-foreground: #FAFAFA;
-  --popover: #1C1C1C;
-  --popover-foreground: #FAFAFA;
-  --primary: #7B46C7;
-  --primary-foreground: #FAFAFA;
-  --secondary: #2D2D2D;
-  --secondary-foreground: #E5E5E5;
-  --muted: #2D2D2D;
-  --muted-foreground: #B0B0B0;
-  --accent: #D4764E;
-  --accent-foreground: #FAFAFA;
-  --destructive: #EF4444;
-  --destructive-foreground: #FAFAFA;
-  --border: #404040;
-  --input: #2D2D2D;
-  --ring: #7B46C7;
-  --chart-1: #7B46C7;
-  --chart-2: #D4764E;
-  --chart-3: #6B9BD4;
-  --chart-4: #B0B0B0;
-  --chart-5: #2D2D2D;
+  /* Academic Duotone Dark Mode - Sophisticated Night Reading */
+  --background: #0A0A0A;       /* Deep black - softer than pure black */
+  --foreground: #F0F0F0;       /* Off-white - easier on eyes than pure white */
+  
+  /* Card and surface colors - subtle layering in dark mode */
+  --card: #141414;             /* Dark gray cards - subtle elevation */
+  --card-foreground: #F0F0F0;  /* Off-white text on cards */
+  --popover: #1A1A1A;          /* Slightly lighter popovers */
+  --popover-foreground: #F0F0F0; /* Off-white text */
+  
+  /* Strategic purple - brightened for dark mode accessibility */
+  --primary: #7B46C7;          /* Lighter purple - better contrast on dark */
+  --primary-foreground: #FFFFFF; /* Pure white on purple */
+  
+  /* Duotone grays - dark mode foundation */
+  --secondary: #1A1A1A;        /* Dark gray - subtle backgrounds */
+  --secondary-foreground: #F0F0F0; /* Off-white on dark backgrounds */
+  --muted: #2A2A2A;           /* Medium dark gray - borders, dividers */
+  --muted-foreground: #A0A0A0; /* Light gray - secondary text */
+  
+  /* Accent - consistent with primary */
+  --accent: #7B46C7;          /* Lighter purple for dark mode */
+  --accent-foreground: #FFFFFF; /* White on purple */
+  
+  /* System colors */
+  --destructive: #EF4444;     /* Lighter red for dark mode */
+  --destructive-foreground: #FFFFFF; /* White on red */
+  
+  /* Interactive elements */
+  --border: #2A2A2A;         /* Dark gray borders */
+  --input: #141414;          /* Dark input backgrounds */
+  --ring: #7B46C7;           /* Purple focus rings */
+  
+  /* Charts - dark mode duotone with strategic color */
+  --chart-1: #7B46C7;        /* Purple */
+  --chart-2: #F0F0F0;        /* Off-white */
+  --chart-3: #A0A0A0;        /* Light gray */
+  --chart-4: #2A2A2A;        /* Dark gray */
+  --chart-5: #0A0A0A;        /* Background */
+  
+  /* Sidebar - dark mode consistency */
   --sidebar: #0F0F0F;
-  --sidebar-foreground: #FAFAFA;
-  --sidebar-primary: #7B46C7;
-  --sidebar-primary-foreground: #FAFAFA;
-  --sidebar-accent: #2D2D2D;
-  --sidebar-accent-foreground: #E5E5E5;
-  --sidebar-border: #404040;
+  --sidebar-foreground: #F0F0F0;
+  --sidebar-primary: #7B46C7;  /* Strategic purple */
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #1A1A1A;
+  --sidebar-accent-foreground: #F0F0F0;
+  --sidebar-border: #2A2A2A;
   --sidebar-ring: #7B46C7;
 }
 
@@ -196,33 +273,246 @@
     padding-top: 6rem;
     padding-bottom: 6rem;
   }
+
+  /* Enhanced Academic Sophisticate Font Classes */
+  .font-display {
+    font-family: var(--font-display), "Source Serif 4", var(--font-serif-alt), "Charter", Georgia, serif;
+  }
   
+  .font-body {
+    font-family: var(--font-body), "Source Sans 3", var(--font-sans-alt), system-ui, sans-serif;
+  }
+  
+  .font-mono {
+    font-family: var(--font-mono), "SF Mono", Monaco, "Cascadia Code", monospace;
+  }
+  
+  .font-quote {
+    font-family: var(--font-display), "Source Serif 4", var(--font-serif-alt), "Charter", Georgia, serif;
+    font-style: italic;
+  }
+  
+  .font-ui {
+    font-family: var(--font-body), "Source Sans 3", var(--font-sans-alt), system-ui, sans-serif;
+    font-weight: 500;
+  }
+  
+  .font-caption {
+    font-family: var(--font-body), "Source Sans 3", var(--font-sans-alt), system-ui, sans-serif;
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+  }
+  
+  .font-label {
+    font-family: var(--font-body), "Source Sans 3", var(--font-sans-alt), system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+
+  /* Long-form reading optimizations */
+  .prose-enhanced {
+    font-family: var(--font-body), "Source Sans 3", var(--font-sans-alt), system-ui, sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.7;
+    letter-spacing: -0.011em;
+  }
+  
+  .prose-enhanced h1, 
+  .prose-enhanced h2, 
+  .prose-enhanced h3, 
+  .prose-enhanced h4, 
+  .prose-enhanced h5, 
+  .prose-enhanced h6 {
+    font-family: var(--font-display), "Source Serif 4", var(--font-serif-alt), "Charter", Georgia, serif;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+
   /* Theme-aware utility classes */
   .text-muted {
     @apply text-muted-foreground;
   }
-  
+
   .bg-page {
     @apply bg-background;
   }
-  
+
   .bg-section {
     @apply bg-secondary/30;
   }
-  
+
   .border-theme {
     @apply border-border;
   }
-  
+
+  /* Academic Button System - Strategic Purple Usage */
   .btn-primary {
-    @apply bg-primary text-primary-foreground px-6 py-3 rounded font-medium hover:bg-primary/90 transition-colors;
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.875rem;
+    letter-spacing: 0.025em;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
   }
   
+  .btn-primary:hover {
+    background-color: color-mix(in srgb, var(--primary) 90%, black);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--primary) 25%, transparent);
+  }
+
+  .btn-secondary {
+    background-color: var(--secondary);
+    color: var(--secondary-foreground);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    border: 1px solid var(--border);
+    cursor: pointer;
+  }
+  
+  .btn-secondary:hover {
+    background-color: var(--muted);
+    transform: translateY(-1px);
+  }
+
   .btn-outline {
-    @apply border-2 border-foreground text-foreground px-6 py-3 rounded font-medium hover:bg-foreground hover:text-background transition-colors;
+    background-color: transparent;
+    color: var(--foreground);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.875rem;
+    border: 2px solid var(--foreground);
+    transition: all 0.2s ease;
+    cursor: pointer;
   }
   
+  .btn-outline:hover {
+    background-color: var(--foreground);
+    color: var(--background);
+  }
+
+  .btn-academic {
+    background-color: transparent;
+    color: var(--primary);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.875rem;
+    border: 2px solid var(--primary);
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  
+  .btn-academic:hover {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--primary) 25%, transparent);
+  }
+
   .bg-chart-3 {
     background-color: var(--chart-3);
+  }
+
+  /* Academic Duotone + Strategic Accent Utility Classes */
+  
+  /* Primary duotone colors */
+  .bg-paper {
+    background-color: var(--background);
+  }
+  
+  .bg-ink {
+    background-color: var(--foreground);
+  }
+  
+  .text-paper {
+    color: var(--background);
+  }
+  
+  .text-ink {
+    color: var(--foreground);
+  }
+  
+  /* Strategic purple accent - use sparingly */
+  .bg-academic {
+    background-color: var(--primary);
+  }
+  
+  .text-academic {
+    color: var(--primary);
+  }
+  
+  .border-academic {
+    border-color: var(--primary);
+  }
+  
+  /* Secondary grays */
+  .bg-muted {
+    background-color: var(--muted);
+  }
+  
+  .text-muted {
+    color: var(--muted-foreground);
+  }
+  
+  .border-muted {
+    border-color: var(--border);
+  }
+  
+  /* Strategic accent colors for specific contexts */
+  .text-rust {
+    color: #B2613E;
+  }
+  
+  .text-forest {
+    color: #1D4A38;
+  }
+  
+  .text-amber {
+    color: #D69E2E;
+  }
+  
+  .bg-rust {
+    background-color: #B2613E;
+  }
+  
+  .bg-forest {
+    background-color: #1D4A38;
+  }
+  
+  .bg-amber {
+    background-color: #D69E2E;
+  }
+  
+  /* Academic interaction states */
+  .hover-academic:hover {
+    color: var(--primary);
+    transition: color 0.2s ease;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-1px);
+    transition: transform 0.2s ease;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }

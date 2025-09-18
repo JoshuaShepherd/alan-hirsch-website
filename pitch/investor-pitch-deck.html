@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movement OS - Digital Platform for Thought Leaders | Investment Pitch</title>
+    <style>
+        :root {
+            --primary-color: #1D4A38;
+            --secondary-color: #B2613E;
+            --accent-gold: #F4B942;
+            --text-dark: #111111;
+            --text-light: #555555;
+            --background: #FFFFFF;
+            --surface: #F8F8F8;
+            --border-light: #CCCCCC;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times', 'Times New Roman', Georgia, serif;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background: var(--background);
+        }
+
+        /* Print-specific styles */
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            body {
+                background: white !important;
+                color: black !important;
+                font-size: 12pt;
+                line-height: 1.4;
+            }
+            
+            .no-print {
+                display: none !important;
+            }
+            
+            .page-break {
+                page-break-before: always;
+            }
+            
+            .page-break-avoid {
+                page-break-inside: avoid;
+            }
+            
+            h1, h2, h3, h4, h5, h6 {
+                page-break-after: avoid;
+                color: var(--primary-color) !important;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+                margin-bottom: 2rem;
+            }
+            
+            .card {
+                border: 2px solid var(--border-light) !important;
+                box-shadow: none !important;
+                page-break-inside: avoid;
+                margin-bottom: 1rem;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            background: white;
+            color: var(--text-dark);
+            padding: 3rem 0;
+            text-align: center;
+            position: relative;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .highlight-box {
+            background: var(--surface);
+            border: 2px solid var(--primary-color);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .section {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-gold));
+            border-radius: 2px;
+        }
+
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        .grid-4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+
+        .card {
+            background: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            border: 2px solid var(--border-light);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-color);
+        }
+
+        .card:hover {
+            border-color: var(--primary-color);
+        }
+
+        .pillar-card {
+            text-align: center;
+        }
+
+        .pillar-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: white;
+            border: 3px solid var(--secondary-color);
+        }
+
+        .revenue-chart {
+            background: var(--surface);
+            border: 2px solid var(--border-light);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin: 2rem 0;
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: end;
+            height: 250px;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .bar {
+            flex: 1;
+            background: var(--primary-color);
+            border: 2px solid var(--secondary-color);
+            border-radius: 0.25rem 0.25rem 0 0;
+            position: relative;
+            display: flex;
+            align-items: end;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            padding: 0.5rem 0.25rem;
+        }
+
+        .bar-label {
+            position: absolute;
+            bottom: -2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .comparison-table {
+            background: white;
+            border: 2px solid var(--border-light);
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: var(--surface);
+        }
+
+        .price-tag {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .big-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            line-height: 1;
+        }
+
+        .metric {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .metric-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--success);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .team-section {
+            background: var(--surface);
+            border: 2px solid var(--border-light);
+            border-radius: 0.5rem;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .founder-card {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: white;
+            border: 2px solid var(--border-light);
+            border-radius: 0.5rem;
+        }
+
+        .founder-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            border: 3px solid var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .founder-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .founder-info .role {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .competitive-advantage {
+            background: var(--surface);
+            color: var(--text-dark);
+            border: 3px solid var(--primary-color);
+            border-radius: 0.5rem;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .advantage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .advantage-item {
+            background: white;
+            border: 2px solid var(--border-light);
+            border-radius: 0.25rem;
+            padding: 1rem;
+        }
+
+        .advantage-item h4 {
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .cta-section {
+            background: var(--surface);
+            color: var(--text-dark);
+            text-align: center;
+            padding: 3rem 2rem;
+            border: 3px solid var(--secondary-color);
+            border-radius: 0.5rem;
+            margin: 3rem 0;
+        }
+
+        .cta-button {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border: 2px solid var(--secondary-color);
+            border-radius: 0.25rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .cta-button:hover {
+            background: var(--secondary-color);
+        }
+
+        .progress-bar {
+            background: var(--border-light);
+            height: 8px;
+            border: 1px solid var(--text-light);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--success);
+            border-radius: 3px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 1rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .valuation-trajectory {
+            background: linear-gradient(135deg, var(--surface), white);
+            border: 3px solid var(--primary-color);
+            border-radius: 0.5rem;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .trajectory-step {
+            background: white;
+            border: 2px solid var(--border-light);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .trajectory-step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--secondary-color);
+        }
+
+        .trajectory-timeline {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-tier-card {
+            background: white;
+            border: 3px solid var(--border-light);
+            border-radius: 0.5rem;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .pricing-tier-card.featured {
+            border-color: var(--secondary-color);
+            transform: scale(1.05);
+        }
+
+        .tier-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin: 1rem 0;
+        }
+
+        .tier-revenue-share {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .subtitle { font-size: 1rem; }
+            .section-title { font-size: 1.5rem; }
+            .container { padding: 0 1rem; }
+            .founder-card { flex-direction: column; text-align: center; }
+            .pricing-tier-card.featured { transform: none; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Movement OS</h1>
+                <p class="subtitle">The Complete Business Ecosystem for Thought Leaders & Movement Builders</p>
+                <div class="highlight-box">
+                    <div class="status-badge">🚀 80% Complete - Ready for Launch</div>
+                    <p><strong>Investment Opportunity:</strong> Capped at 1,000 users with asymmetric risk/reward profile</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Executive Summary -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Executive Summary</h2>
+                <div class="grid grid-2">
+                    <div class="card page-break-avoid">
+                        <h3>The Opportunity</h3>
+                        <p>Thought leaders with sophisticated frameworks struggle to build sustainable digital businesses. They're forced to use 10+ different tools, manage complex technical infrastructure, and lose focus on their core expertise. We've built the first integrated platform specifically for this underserved market.</p>
+                        <ul style="margin-top: 1rem;">
+                            <li><strong>Market Size:</strong> $12B+ creator economy</li>
+                            <li><strong>Target:</strong> Thought leaders with 10K+ followers</li>
+                            <li><strong>Revenue Cap:</strong> 1,000 users maximum (scarcity model)</li>
+                            <li><strong>Current ARR:</strong> $100K+ annually from expertise</li>
+                        </ul>
+                    </div>
+                    <div class="card page-break-avoid">
+                        <h3>Investment Thesis</h3>
+                        <p>Movement OS represents asymmetric risk with extraordinary upside. With proven demand, established equity partners (Alan Hirsch, Brad Brisco), and 80% code completion, the platform is positioned for rapid revenue generation and significant valuation growth.</p>
+                        <ul style="margin-top: 1rem;">
+                            <li><strong>Proven Demand:</strong> Founding customers secured</li>
+                            <li><strong>Network Effects:</strong> Each user amplifies platform value</li>
+                            <li><strong>Defensible Moat:</strong> Vertical specialization + community</li>
+                            <li><strong>Exit Strategy:</strong> Strategic acquisition or scale-up</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Model (CORRECTED) -->
+        <section class="section page-break" style="background: var(--surface);">
+            <div class="container">
+                <h2 class="section-title">Revenue Model - Tiered Pricing Strategy</h2>
+                
+                <div class="grid grid-3">
+                    <div class="pricing-tier-card">
+                        <h3>Tier 1: Pioneers</h3>
+                        <div class="tier-price">$1,000</div>
+                        <div class="tier-revenue-share">+ 10% Revenue Share</div>
+                        <p><strong>First 100 Users</strong></p>
+                        <ul style="text-align: left; margin-top: 1rem;">
+                            <li>Full platform access</li>
+                            <li>AI-powered content creation</li>
+                            <li>Learning management system</li>
+                            <li>Revenue optimization tools</li>
+                            <li>Founding member benefits</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pricing-tier-card featured">
+                        <h3>Tier 2: Builders</h3>
+                        <div class="tier-price">$2,000</div>
+                        <div class="tier-revenue-share">+ 10% Revenue Share</div>
+                        <p><strong>Users 101-500</strong></p>
+                        <ul style="text-align: left; margin-top: 1rem;">
+                            <li>All Tier 1 features</li>
+                            <li>Advanced analytics</li>
+                            <li>Priority support</li>
+                            <li>Network amplification</li>
+                            <li>Collaborative features</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pricing-tier-card">
+                        <h3>Tier 3: Elite</h3>
+                        <div class="tier-price">$5,000</div>
+                        <div class="tier-revenue-share">+ 10% Revenue Share</div>
+                        <p><strong>Users 501-1000</strong></p>
+                        <ul style="text-align: left; margin-top: 1rem;">
+                            <li>All previous features</li>
+                            <li>White-label options</li>
+                            <li>Custom integrations</li>
+                            <li>Executive support</li>
+                            <li>Strategic consulting</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="revenue-chart">
+                    <h3 style="text-align: center; margin-bottom: 2rem;">Revenue Projections - Movement OS</h3>
+                    <div class="bar-chart">
+                        <div class="bar" style="height: 20%;">
+                            <span>$160K</span>
+                            <div class="bar-label">100 Users<br>Base + Revenue Share</div>
+                        </div>
+                        <div class="bar" style="height: 60%;">
+                            <span>$900K</span>
+                            <div class="bar-label">500 Users<br>Scaling Network</div>
+                        </div>
+                        <div class="bar" style="height: 100%;">
+                            <span>$3.4M+</span>
+                            <div class="bar-label">1000 Users<br>Full Network</div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-3" style="margin-top: 3rem;">
+                        <div class="metric">
+                            <div class="metric-value">$160K</div>
+                            <div class="metric-label">Annual Revenue at 100 Users</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">$900K</div>
+                            <div class="metric-label">Annual Revenue at 500 Users</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">$3.4M+</div>
+                            <div class="metric-label">Base Revenue at 1000 Users<br><small>+ Significant Revenue Share</small></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Four Pillars -->
+        <section class="section page-break">
+            <div class="container">
+                <h2 class="section-title">The Four Pillars</h2>
+                <div class="grid grid-4">
+                    <div class="card pillar-card page-break-avoid">
+                        <div class="pillar-icon">🎯</div>
+                        <h3>Content Creation Laboratory</h3>
+                        <p>AI-assisted content creation with block-based editor, SEO optimization, and multi-format publishing</p>
+                    </div>
+                    <div class="card pillar-card page-break-avoid">
+                        <div class="pillar-icon">🎓</div>
+                        <h3>Learning Management Ecosystem</h3>
+                        <p>Structured courses, progress tracking, assessments, and community-driven learning experiences</p>
+                    </div>
+                    <div class="card pillar-card page-break-avoid">
+                        <div class="pillar-icon">💰</div>
+                        <h3>Revenue Optimization Engine</h3>
+                        <p>Tiered subscriptions, course sales, automated funnels, and comprehensive financial analytics</p>
+                    </div>
+                    <div class="card pillar-card page-break-avoid">
+                        <div class="pillar-icon">📊</div>
+                        <h3>Audience Intelligence System</h3>
+                        <p>Data-driven insights, engagement analytics, and AI-powered content recommendations</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Valuation Trajectory -->
+        <section class="section page-break">
+            <div class="container">
+                <h2 class="section-title">Valuation Trajectory & Investor Returns</h2>
+                
+                <div class="valuation-trajectory">
+                    <div class="trajectory-step">
+                        <div class="trajectory-timeline">Today (Pre-Launch, 80% Complete)</div>
+                        <h4>$2.5M - $4M Valuation</h4>
+                        <p>Pre-revenue with high-profile founding users (Alan Hirsch, Brad Brisco), working product, and clear go-to-market strategy. Strategic advisors/investors de-risk the investment.</p>
+                    </div>
+                    
+                    <div class="trajectory-step">
+                        <div class="trajectory-timeline">At 100 Users (12-18 Months)</div>
+                        <h4>$5M - $7M Valuation</h4>
+                        <p>Proof of product-market fit with ~$160K ARR. Network credibility from 100 leading thinkers. Conservative SaaS multiples with momentum premium for strategic market position.</p>
+                    </div>
+                    
+                    <div class="trajectory-step">
+                        <div class="trajectory-timeline">At 1000 Users (3-4 Years)</div>
+                        <h4>$300M - $600M Valuation</h4>
+                        <p>$3.4M+ base revenue plus significant revenue share (projected $28M-$56M annually). Movement OS becomes dominant platform for thought leader publishing with defensive network moat.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-2" style="margin-top: 3rem;">
+                    <div class="card">
+                        <h3>Why This Valuation Is Conservative</h3>
+                        <ul>
+                            <li><strong>Network Effects:</strong> Each user increases platform value exponentially</li>
+                            <li><strong>Revenue Share Model:</strong> Scales with user success (not just platform usage)</li>
+                            <li><strong>Category Creation:</strong> First-mover in vertical-specific creator economy</li>
+                            <li><strong>Strategic Buyers:</strong> Education SaaS, publishing platforms, major networks</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Asymmetric Risk Profile</h3>
+                        <ul>
+                            <li><strong>Upside:</strong> 150x+ returns if full scale achieved</li>
+                            <li><strong>Downside:</strong> Even at 200-300 users = $10M+ valuation</li>
+                            <li><strong>Floor:</strong> Proven demand means "failure" = smaller success</li>
+                            <li><strong>Exit Options:</strong> Strategic acquisition or continued growth</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Strategic Partners & Equity -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Strategic Partners & Founding Customers</h2>
+                <div class="team-section page-break-avoid">
+                    <div class="grid grid-2">
+                        <div class="founder-card">
+                            <div class="founder-avatar">AH</div>
+                            <div class="founder-info">
+                                <h3>Alan Hirsch</h3>
+                                <p class="role">Founding Customer & Equity Partner</p>
+                                <p>Internationally recognized thought leader in missional church and organizational transformation. Author of 20+ books, consultant to major organizations worldwide. Provides content strategy, theological expertise, and initial customer base of 50,000+ followers.</p>
+                            </div>
+                        </div>
+                        <div class="founder-card">
+                            <div class="founder-avatar">BH</div>
+                            <div class="founder-info">
+                                <h3>Brad Brisco</h3>
+                                <p class="role">Customer & Potential Equity Partner</p>
+                                <p>Successful entrepreneur and business strategist with extensive experience in digital transformation and revenue optimization. Provides business development expertise, strategic guidance, and proven business network connections.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cost Comparison -->
+        <section class="section page-break">
+            <div class="container">
+                <h2 class="section-title">Cost Comparison: Build vs Buy vs Movement OS</h2>
+                
+                <div class="comparison-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Approach</th>
+                                <th>Initial Cost</th>
+                                <th>Annual Cost</th>
+                                <th>Time to Market</th>
+                                <th>Risk Level</th>
+                                <th>Success Probability</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Agency Development</strong></td>
+                                <td class="price-tag">$250K - $500K</td>
+                                <td class="price-tag">$100K - $200K</td>
+                                <td>12-18 months</td>
+                                <td style="color: var(--danger);">High</td>
+                                <td style="color: var(--danger);">30-40%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SaaS Tool Stack</strong></td>
+                                <td class="price-tag">$50K - $100K</td>
+                                <td class="price-tag">$60K - $120K</td>
+                                <td>6-12 months</td>
+                                <td style="color: var(--warning);">Medium</td>
+                                <td style="color: var(--warning);">50-60%</td>
+                            </tr>
+                            <tr style="background: rgba(16, 185, 129, 0.1);">
+                                <td><strong>Movement OS</strong></td>
+                                <td class="price-tag">$1,000 - $5,000</td>
+                                <td class="price-tag">Revenue Share Only</td>
+                                <td>30-45 days</td>
+                                <td style="color: var(--success);">Low</td>
+                                <td style="color: var(--success);">85-90%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="grid grid-2" style="margin-top: 3rem;">
+                    <div class="card">
+                        <h3>Why Alternatives Fail</h3>
+                        <ul>
+                            <li><strong>Agency Development:</strong> $300K+ cost, 18+ months, 70% failure rate</li>
+                            <li><strong>SaaS Stack:</strong> Requires 8-12 tools, data silos, poor UX</li>
+                            <li><strong>DIY Approach:</strong> Technical complexity overwhelms thought leaders</li>
+                            <li><strong>Generic Platforms:</strong> Lack vertical-specific features</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Movement OS Advantage</h3>
+                        <ul>
+                            <li><strong>Proven Product:</strong> 80% built, tested with real users</li>
+                            <li><strong>Vertical Focus:</strong> Built specifically for thought leaders</li>
+                            <li><strong>Network Effects:</strong> Success amplifies success</li>
+                            <li><strong>Revenue Sharing:</strong> Aligned incentives for growth</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roadmap to 1000 -->
+        <section class="section page-break">
+            <div class="container">
+                <h2 class="section-title">Roadmap to 1,000 Users</h2>
+                
+                <div class="grid grid-3">
+                    <div class="card">
+                        <h3>Phase 1: First 100 (Year 1)</h3>
+                        <div class="metric-value" style="font-size: 2rem;">65-70%</div>
+                        <div class="metric-label">Success Probability</div>
+                        <ul style="margin-top: 1rem;">
+                            <li>Leverage Alan/Brad credibility</li>
+                            <li>MLC & 5Q network activation</li>
+                            <li>Direct outreach & case studies</li>
+                            <li>$1,000 + 10% pricing tier</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Phase 2: 100-500 (Year 2)</h3>
+                        <div class="metric-value" style="font-size: 2rem;">80-85%</div>
+                        <div class="metric-label">Success Probability</div>
+                        <ul style="margin-top: 1rem;">
+                            <li>Network analytics & proof</li>
+                            <li>Cross-collaboration workshops</li>
+                            <li>$2,000 + 10% pricing tier</li>
+                            <li>Systematized operations</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Phase 3: 500-1000 (Years 3-4)</h3>
+                        <div class="metric-value" style="font-size: 2rem;">90%+</div>
+                        <div class="metric-label">Success Probability</div>
+                        <ul style="margin-top: 1rem;">
+                            <li>$5,000 + 10% pricing tier</li>
+                            <li>Full network maturation</li>
+                            <li>Group publishing initiatives</li>
+                            <li>Strategic positioning complete</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 2rem;">
+                    <h3>Why 1,000 Is The Perfect Cap</h3>
+                    <p>The 1,000 user limit creates the perfect positioning for long-term value creation:</p>
+                    <ul style="margin-top: 1rem;">
+                        <li><strong>Authority & Expertise:</strong> Demonstrable track record with 1,000 high-quality thought leaders</li>
+                        <li><strong>Assets in Hand:</strong> Network of 25-30M combined reach, field-tested infrastructure, deepest dataset in niche</li>
+                        <li><strong>Strategic Options:</strong> Product expansion, network services, licensing, consulting arm</li>
+                        <li><strong>Network Permanence:</strong> 1,000 flagship users provide credibility base for unlimited expansion</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Development Progress -->
+        <section class="section page-break">
+            <div class="container">
+                <h2 class="section-title">Development Status & Timeline</h2>
+                
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3>✅ Completed (80%)</h3>
+                        <div style="margin: 1rem 0;">
+                            <div>Database Architecture & Multi-tenancy</div>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
+                        </div>
+                        <div style="margin: 1rem 0;">
+                            <div>User Authentication & Management</div>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
+                        </div>
+                        <div style="margin: 1rem 0;">
+                            <div>Content Management System</div>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 95%;"></div></div>
+                        </div>
+                        <div style="margin: 1rem 0;">
+                            <div>Payment & Subscription Infrastructure</div>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 90%;"></div></div>
+                        </div>
+                        <div style="margin: 1rem 0;">
+                            <div>AI Integration Framework</div>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>🚧 Remaining (20%)</h3>
+                        <div style="margin: 1rem 0;">
+                            <div>Database Integration & API Connections</div>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 60%;"></div></div>
+                        </div>
+                        <div style="margin: 1rem 0;">
+                            <div>Multi-Platform Publishing</div>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 40%;"></div></div>
+                        </div>
+                        <div style="margin: 1rem 0;">
+                            <div>Real-Time Collaboration Features</div>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 30%;"></div></div>
+                        </div>
+                        <div style="margin: 1rem 0;">
+                            <div>Mobile Optimization</div>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 70%;"></div></div>
+                        </div>
+                        <div style="margin: 1rem 0;">
+                            <div>Performance Optimization</div>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 50%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-3" style="margin-top: 3rem;">
+                    <div class="metric">
+                        <div class="metric-value">30-45</div>
+                        <div class="metric-label">Days to Launch Ready</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">164</div>
+                        <div class="metric-label">Navigable Pages Built</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">80%</div>
+                        <div class="metric-label">Platform Complete</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Competitive Advantages -->
+        <div class="competitive-advantage page-break-avoid">
+            <div class="container">
+                <h2 style="color: var(--primary-color); text-align: center; margin-bottom: 2rem;">Why Movement OS Wins</h2>
+                <div class="advantage-grid">
+                    <div class="advantage-item">
+                        <h4>First-Mover Advantage</h4>
+                        <p>No direct competitors offering integrated business-in-a-box for thought leaders. We're creating the category.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h4>Network Effects & Scenius</h4>
+                        <p>Users benefit from collective intelligence and cross-pollination. Platform value increases exponentially with each new member.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h4>Vertical Specialization</h4>
+                        <p>Built specifically for sophisticated content creators, with tools and workflows optimized for deep intellectual work.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h4>Proven Demand</h4>
+                        <p>Launching with established thought leaders provides immediate validation and rapid customer acquisition.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h4>Revenue Share Alignment</h4>
+                        <p>Success incentives aligned - we only succeed when our users succeed. Creates loyalty and reduces churn.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h4>Scarcity Model</h4>
+                        <p>1,000 user cap creates urgency and exclusivity. Quality over quantity approach ensures premium positioning.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="cta-section">
+            <div class="container">
+                <h2 style="color: var(--text-dark); margin-bottom: 1rem;">Investment Opportunity</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">Join us in building the future of thought leadership and movement creation</p>
+                
+                <div class="grid grid-2" style="margin-bottom: 2rem;">
+                    <div style="text-align: left;">
+                        <h4>Seeking: Series A Funding</h4>
+                        <ul>
+                            <li>$2M - $5M investment round</li>
+                            <li>18-month runway to 500 users</li>
+                            <li>Strategic investors preferred</li>
+                            <li>Board seat available</li>
+                        </ul>
+                    </div>
+                    <div style="text-align: left;">
+                        <h4>Use of Funds:</h4>
+                        <ul>
+                            <li>Product completion (30%)</li>
+                            <li>Customer acquisition (40%)</li>
+                            <li>Team expansion (20%)</li>
+                            <li>Operations & legal (10%)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <button class="cta-button">Schedule Investment Discussion</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Print-optimized version - minimal JavaScript
+        window.addEventListener('load', function() {
+            if (window.matchMedia) {
+                var mediaQueryList = window.matchMedia('print');
+                mediaQueryList.addListener(function(mql) {
+                    if (mql.matches) {
+                        document.body.classList.add('printing');
+                    } else {
+                        document.body.classList.remove('printing');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

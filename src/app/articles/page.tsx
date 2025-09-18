@@ -14,7 +14,8 @@ const articles = [
     excerpt: "How the early church's simple practices can revolutionize modern ministry approaches.",
     category: "Missional DNA",
     readTime: "8 min read",
-    featured: true
+    featured: true,
+    date: "February 2025"
   },
   {
     slug: "apest-leadership-teams",
@@ -22,15 +23,17 @@ const articles = [
     excerpt: "Practical steps to implement the five-fold ministry in your church leadership structure.",
     category: "APEST",
     readTime: "6 min read",
-    featured: true
+    featured: true,
+    date: "February 2025"
   },
   {
     slug: "post-christendom-evangelism",
     title: "Evangelism in a Post-Christendom Context",
     excerpt: "Rethinking how we share the gospel in secular, post-Christian societies.",
-    category: "Cultural Analysis",
-    readTime: "10 min read",
-    featured: false
+    category: "Evangelism",
+    readTime: "7 min read",
+    featured: true,
+    date: "February 2025"
   },
   {
     slug: "organic-church-multiplication",
@@ -38,7 +41,8 @@ const articles = [
     excerpt: "Why sustainable movements grow from DNA, not programs.",
     category: "Apostolic Movements",
     readTime: "7 min read",
-    featured: false
+    featured: false,
+    date: "January 2025"
   },
   {
     slug: "prophetic-voice-church",
@@ -46,21 +50,53 @@ const articles = [
     excerpt: "How the prophetic gift challenges complacency and calls the church to its mission.",
     category: "APEST",
     readTime: "9 min read",
-    featured: false
+    featured: false,
+    date: "January 2025"
   },
   {
-    slug: "discipleship-vs-membership",
-    title: "From Membership to Discipleship",
-    excerpt: "Shifting church culture from passive attendance to active participation in God's mission.",
-    category: "Missional DNA",
+    slug: "building-movemental-churches",
+    title: "Building Churches That Move",
+    excerpt: "Essential characteristics of churches that create and sustain movement dynamics.",
+    category: "Movement",
+    readTime: "10 min read",
+    featured: false,
+    date: "January 2025"
+  },
+  {
+    slug: "discipleship-or-disciplism",
+    title: "Discipleship or Disciplism?",
+    excerpt: "Understanding the difference between making disciples and making church members.",
+    category: "Discipleship",
     readTime: "5 min read",
-    featured: false
+    featured: false,
+    date: "January 2025"
+  },
+  {
+    slug: "the-shaping-future-church",
+    title: "The Shaping of Things to Come",
+    excerpt: "How emerging church paradigms are reshaping Christianity for the 21st century.",
+    category: "Future Church",
+    readTime: "9 min read",
+    featured: false,
+    date: "December 2024"
+  },
+  {
+    slug: "apostolic-genius-rediscovered", 
+    title: "Rediscovering Apostolic Genius",
+    excerpt: "The six elements of apostolic genius that drove early Christian movement expansion.",
+    category: "Missional DNA",
+    readTime: "12 min read",
+    featured: false,
+    date: "December 2024"
   }
 ];
 
 export default function Articles() {
   const featuredArticles = articles.filter(article => article.featured);
   const regularArticles = articles.filter(article => !article.featured);
+  
+  // Get unique categories for filtering
+  const categories = Array.from(new Set(articles.map(article => article.category)));
 
   return (
     <div style={{ backgroundColor: '#F8F8F6' }}>
@@ -74,6 +110,48 @@ export default function Articles() {
             <p className="text-xl max-w-content mx-auto leading-relaxed" style={{ color: '#444444' }}>
               Deep thinking on missional church renewal, apostolic movements, and the future of Christianity in a post-Christendom world.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Search and Filter */}
+      <section className="section-padding" style={{ backgroundColor: '#E3E3E0' }}>
+        <div className="max-w-container mx-auto px-6">
+          <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-8">
+            <div className="flex-1 max-w-md">
+              <div className="relative">
+                <svg 
+                  className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5" 
+                  style={{ color: '#444444' }}
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                <input
+                  type="text"
+                  placeholder="Search articles..."
+                  className="w-full pl-10 pr-4 py-3 border border-graphite/20 rounded-lg focus:border-forest focus:outline-none"
+                  style={{ backgroundColor: '#F8F8F6' }}
+                />
+              </div>
+            </div>
+            
+            <div className="flex gap-2 flex-wrap">
+              <button className="px-4 py-2 rounded-lg font-medium transition-colors bg-forest text-paper">
+                All Categories
+              </button>
+              {categories.slice(0, 5).map(category => (
+                <button 
+                  key={category}
+                  className="px-4 py-2 rounded-lg font-medium transition-colors border border-graphite/20 hover:border-forest hover:bg-forest hover:text-paper"
+                  style={{ backgroundColor: '#F8F8F6', color: '#444444' }}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </section>

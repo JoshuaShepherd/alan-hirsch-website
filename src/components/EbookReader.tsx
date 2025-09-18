@@ -155,7 +155,7 @@ export function EbookReader({ book, initialChapter }: EbookReaderProps) {
               </div>
               <div className="bg-secondary/20 rounded p-3 text-center ">
                 <p className="text-sm">Interactive audio content will be available in the full version</p>
-                <button className="mt-2 px-4 py-2 bg-primary text-primary-foreground rounded text-sm hover:bg-primary/90 transition-colors">
+                <button className="mt-2 btn-primary text-sm">
                   🎵 Play Audio Commentary
                 </button>
               </div>
@@ -173,7 +173,7 @@ export function EbookReader({ book, initialChapter }: EbookReaderProps) {
               <div className="bg-secondary/20 rounded p-3 text-center  aspect-video flex items-center justify-center">
                 <div>
                   <p className="text-sm mb-2">Interactive video content will be available in the full version</p>
-                  <button className="px-4 py-2 bg-primary text-primary-foreground rounded text-sm hover:bg-primary/90 transition-colors">
+                  <button className="btn-primary text-sm">
                     ▶️ Play Video
                   </button>
                 </div>
@@ -202,7 +202,7 @@ export function EbookReader({ book, initialChapter }: EbookReaderProps) {
       <header className="sticky top-1 bg-background/95 backdrop-blur-sm border-b border-border z-40 px-6 py-4">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <Link href="/books" className="text-primary hover:text-primary/80">
+            <Link href="/books" className="text-academic hover-academic">
               <ChevronLeft className="w-5 h-5" />
             </Link>
             <div>

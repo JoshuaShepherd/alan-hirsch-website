@@ -47,7 +47,8 @@ export default function SiteMapPage() {
         { title: "Contact", url: "/contact", description: "Get in touch with Alan for speaking and consulting" },
         { title: "Privacy Policy", url: "/privacy", description: "Data privacy and usage policies" },
         { title: "Terms of Service", url: "/terms", description: "Website terms and conditions" },
-        { title: "Ethics Statement", url: "/ethics", description: "Ethical guidelines and commitments" }
+        { title: "Ethics Statement", url: "/ethics", description: "Ethical guidelines and commitments" },
+        { title: "Cookie Policy", url: "/cookies", description: "Cookie usage and preferences" }
       ]
     },
     {
@@ -58,7 +59,9 @@ export default function SiteMapPage() {
         { title: "Complete Books", url: "/books", description: "Full collection of Alan's published works" },
         { title: "Latest Articles", url: "/articles", description: "Thought leadership and insights" },
         { title: "Podcast Episodes", url: "/podcast", description: "Audio content and interviews" },
-        { title: "Newsletter Archive", url: "/newsletter", description: "Monthly insights and updates" }
+        { title: "Newsletter Archive", url: "/newsletter", description: "Monthly insights and updates" },
+        { title: "Video Library", url: "/video-library", description: "Educational video content and lectures" },
+        { title: "Resources Hub", url: "/resources", description: "Comprehensive resource collection" }
       ]
     },
     {
@@ -69,28 +72,49 @@ export default function SiteMapPage() {
         { title: "Missional Assessment", url: "/missional-assessment", description: "Evaluate your church's missional health" },
         { title: "APEST Agents", url: "/apest-agents", description: "AI-powered ministry gift discovery" },
         { title: "Leadership Toolkit", url: "/toolkit", description: "Comprehensive resource hub for leaders" },
-        { title: "Speaking Topics", url: "/speaking", description: "Available presentations and workshops" }
+        { title: "Speaking Topics", url: "/speaking", description: "Available presentations and workshops" },
+        { title: "mDNA Hero Demo", url: "/mdna-hero", description: "Interactive mDNA framework experience" },
+        { title: "Diagnostic Tools", url: "/diagnostic", description: "Church health diagnostic resources" }
       ]
     },
     {
-      category: "Community & Platform",
+      category: "Community & Platform Features",
       icon: Users,
       color: "bg-purple-500",
       pages: [
         { title: "Community Forums", url: "/community", description: "Discussion and collaboration space" },
         { title: "Search Content", url: "/search", description: "Find specific resources and content" },
         { title: "Member Dashboard", url: "/dashboard", description: "Personal account and progress tracking" },
-        { title: "Membership Plans", url: "/membership", description: "Subscription tiers and benefits" }
+        { title: "Membership Plans", url: "/membership", description: "Subscription tiers and benefits" },
+        { title: "Events Calendar", url: "/events", description: "Upcoming events and workshops" },
+        { title: "Components Showcase", url: "/components", description: "UI component library demonstration" }
       ]
     },
     {
-      category: "Authentication & Account",
+      category: "Learning Management System",
+      icon: Award,
+      color: "bg-emerald-500",
+      pages: [
+        { title: "LMS Platform", url: "/lms", description: "Complete learning management system" },
+        { title: "LMS Dashboard", url: "/lms/dashboard", description: "Student and instructor dashboard" },
+        { title: "Course Creation", url: "/lms/courses/new", description: "Create and manage courses" },
+        { title: "LMS Authentication", url: "/lms/auth", description: "LMS-specific login portal" },
+        { title: "LMS Setup", url: "/lms/setup", description: "Initial platform configuration" },
+        { title: "Movemental Program", url: "/lms/movemental", description: "Specialized movemental training" },
+        { title: "LMS Settings", url: "/lms/settings", description: "Platform configuration and preferences" }
+      ]
+    },
+    {
+      category: "Authentication & Account Management",
       icon: User,
       color: "bg-indigo-500",
       pages: [
         { title: "Sign In", url: "/auth/login", description: "Member login portal" },
         { title: "Create Account", url: "/auth/signup", description: "New user registration" },
-        { title: "Admin Panel", url: "/admin", description: "Administrative dashboard (restricted)" }
+        { title: "Admin Dashboard", url: "/admin", description: "Complete administrative control panel" },
+        { title: "Test Users Management", url: "/admin/test-users", description: "Development user management" },
+        { title: "Dev Sign In", url: "/dev-signin", description: "Development authentication portal" },
+        { title: "No-Auth Testing", url: "/no-auth-testing", description: "Authentication bypass for testing" }
       ]
     },
     {
@@ -105,6 +129,27 @@ export default function SiteMapPage() {
         { title: "Future Travelers", url: "/future-travelers", description: "Innovation and emerging culture" },
         { title: "Church Resource Ministries", url: "/crm", description: "Global church development organization" }
       ]
+    },
+    {
+      category: "Development & Testing Pages",
+      icon: Settings,
+      color: "bg-gray-500",
+      pages: [
+        { title: "Content Checklist", url: "/content-checklist", description: "Development content audit tool" },
+        { title: "Multimedia Demo", url: "/multimedia-demo", description: "Media component demonstrations" },
+        { title: "Test Setup", url: "/test-setup", description: "Development environment configuration" },
+        { title: "Content Creator", url: "/content-creator", description: "Content management interface" },
+        { title: "Site Map", url: "/site-map", description: "Complete site navigation index" }
+      ]
+    },
+    {
+      category: "E-commerce & Donations",
+      icon: CreditCard,
+      color: "bg-green-600",
+      pages: [
+        { title: "Products", url: "/products", description: "Available books and resources for purchase" },
+        { title: "Donate", url: "/donate", description: "Support Alan's ministry and mission" }
+      ]
     }
   ];
 
@@ -115,7 +160,15 @@ export default function SiteMapPage() {
     { title: "ReJesus", slug: "rejesus", icon: Heart },
     { title: "The Faith of Leap", slug: "the-faith-of-leap", icon: Target },
     { title: "Untamed", slug: "untamed", icon: Eye },
-    { title: "The Shaping of Things to Come", slug: "the-shaping-of-things-to-come", icon: Puzzle }
+    { title: "The Shaping of Things to Come", slug: "the-shaping-of-things-to-come", icon: Puzzle },
+    { title: "The Forgotten Ways Handbook", slug: "the-forgotten-ways-handbook", icon: BookOpen },
+    { title: "Disciplism", slug: "disciplism", icon: Users },
+    { title: "Reframation", slug: "reframation", icon: Sparkles },
+    { title: "The Starfish and the Spider", slug: "the-starfish-and-the-spider", icon: Star },
+    { title: "Metanoia", slug: "metanoia", icon: Heart },
+    { title: "Ephesians Study", slug: "ephesians", icon: BookOpen },
+    { title: "Systematic Theology", slug: "systematic-theology", icon: Settings },
+    { title: "La Fe del Salto (Spanish)", slug: "la-fe-del-salto", icon: Target }
   ];
 
   return (
@@ -290,31 +343,37 @@ export default function SiteMapPage() {
                 <li><Link href="/ai-homepage" className="text-primary hover:text-primary/80">AI Assistant</Link></li>
                 <li><Link href="/community" className="text-primary hover:text-primary/80">Community Forums</Link></li>
                 <li><Link href="/dashboard" className="text-primary hover:text-primary/80">Personal Dashboard</Link></li>
+                <li><Link href="/events" className="text-primary hover:text-primary/80">Events Calendar</Link></li>
               </ul>
             </div>
 
             <div className="bg-card border border-border rounded-lg p-4">
-              <h3 className="font-medium text-card-foreground mb-3">Assessment Tools</h3>
+              <h3 className="font-medium text-card-foreground mb-3">Learning Systems</h3>
               <ul className="space-y-2 text-sm">
-                <li><Link href="/missional-assessment" className="text-primary hover:text-primary/80">Missional Health Check</Link></li>
-                <li><Link href="/apest-agents" className="text-primary hover:text-primary/80">APEST Discovery</Link></li>
-                <li><Link href="/toolkit" className="text-primary hover:text-primary/80">Leadership Resources</Link></li>
+                <li><Link href="/lms" className="text-primary hover:text-primary/80">LMS Platform</Link></li>
+                <li><Link href="/lms/dashboard" className="text-primary hover:text-primary/80">Learning Dashboard</Link></li>
+                <li><Link href="/lms/movemental" className="text-primary hover:text-primary/80">Movemental Program</Link></li>
+                <li><Link href="/missional-assessment" className="text-primary hover:text-primary/80">Missional Assessment</Link></li>
+                <li><Link href="/apest-agents" className="text-primary hover:text-primary/80">APEST Agents</Link></li>
               </ul>
             </div>
 
             <div className="bg-card border border-border rounded-lg p-4">
-              <h3 className="font-medium text-card-foreground mb-3">Account Access</h3>
+              <h3 className="font-medium text-card-foreground mb-3">Account & Administration</h3>
               <ul className="space-y-2 text-sm">
                 <li><Link href="/auth/login" className="text-primary hover:text-primary/80">Member Login</Link></li>
                 <li><Link href="/auth/signup" className="text-primary hover:text-primary/80">Create Account</Link></li>
                 <li><Link href="/membership" className="text-primary hover:text-primary/80">Subscription Plans</Link></li>
                 <li><Link href="/admin" className="text-primary hover:text-primary/80">Admin Dashboard</Link></li>
+                <li><Link href="/lms/auth" className="text-primary hover:text-primary/80">LMS Login</Link></li>
               </ul>
             </div>
 
             <div className="bg-card border border-border rounded-lg p-4">
-              <h3 className="font-medium text-card-foreground mb-3">Legal & Policies</h3>
+              <h3 className="font-medium text-card-foreground mb-3">Commerce & Support</h3>
               <ul className="space-y-2 text-sm">
+                <li><Link href="/products" className="text-primary hover:text-primary/80">Shop Products</Link></li>
+                <li><Link href="/donate" className="text-primary hover:text-primary/80">Make Donation</Link></li>
                 <li><Link href="/privacy" className="text-primary hover:text-primary/80">Privacy Policy</Link></li>
                 <li><Link href="/terms" className="text-primary hover:text-primary/80">Terms of Service</Link></li>
                 <li><Link href="/ethics" className="text-primary hover:text-primary/80">Ethics Statement</Link></li>
