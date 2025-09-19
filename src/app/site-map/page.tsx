@@ -37,18 +37,15 @@ export const metadata: Metadata = {
 export default function SiteMapPage() {
   const siteStructure = [
     {
-      category: "Homepage & Core Pages",
+      category: "Core Pages",
       icon: Home,
       color: "bg-blue-500",
       pages: [
-        { title: "Main Homepage", url: "/", description: "Primary landing page with human-first design" },
-        { title: "AI-Powered Homepage", url: "/ai-homepage", description: "Interactive AI assistant experience" },
+        { title: "Homepage", url: "/", description: "Main landing page showcasing Alan's mission and work" },
         { title: "About Alan", url: "/about", description: "Alan's background, mission, and vision" },
         { title: "Contact", url: "/contact", description: "Get in touch with Alan for speaking and consulting" },
-        { title: "Privacy Policy", url: "/privacy", description: "Data privacy and usage policies" },
-        { title: "Terms of Service", url: "/terms", description: "Website terms and conditions" },
-        { title: "Ethics Statement", url: "/ethics", description: "Ethical guidelines and commitments" },
-        { title: "Cookie Policy", url: "/cookies", description: "Cookie usage and preferences" }
+        { title: "Site Map", url: "/site-map", description: "Complete site navigation index" },
+        { title: "Search Content", url: "/search", description: "Find specific resources and content" }
       ]
     },
     {
@@ -56,38 +53,29 @@ export default function SiteMapPage() {
       icon: BookOpen,
       color: "bg-green-500",
       pages: [
-        { title: "Complete Books", url: "/books", description: "Full collection of Alan's published works" },
-        { title: "Latest Articles", url: "/articles", description: "Thought leadership and insights" },
+        { title: "Complete Books", url: "/books", description: "Full collection of Alan's published works with interactive reader" },
+        { title: "Blog", url: "/blog", description: "Latest articles, insights, and thought leadership" },
         { title: "Podcast Episodes", url: "/podcast", description: "Audio content and interviews" },
-        { title: "Newsletter Archive", url: "/newsletter", description: "Monthly insights and updates" },
-        { title: "Video Library", url: "/video-library", description: "Educational video content and lectures" },
-        { title: "Resources Hub", url: "/resources", description: "Comprehensive resource collection" }
+        { title: "Newsletter", url: "/newsletter", description: "Monthly insights and updates" },
+        { title: "Resources Hub", url: "/resources", description: "Comprehensive resource collection and downloads" }
       ]
     },
     {
-      category: "Assessment Tools & Resources",
+      category: "Assessment Tools",
       icon: Target,
       color: "bg-orange-500",
       pages: [
-        { title: "Missional Assessment", url: "/missional-assessment", description: "Evaluate your church's missional health" },
-        { title: "APEST Agents", url: "/apest-agents", description: "AI-powered ministry gift discovery" },
-        { title: "Leadership Toolkit", url: "/toolkit", description: "Comprehensive resource hub for leaders" },
-        { title: "Speaking Topics", url: "/speaking", description: "Available presentations and workshops" },
-        { title: "mDNA Hero Demo", url: "/mdna-hero", description: "Interactive mDNA framework experience" },
-        { title: "Diagnostic Tools", url: "/diagnostic", description: "Church health diagnostic resources" }
+        { title: "Missional Assessment", url: "/missional-assessment", description: "Comprehensive church health diagnostic tool" }
       ]
     },
     {
-      category: "Community & Platform Features",
+      category: "Community & Platform",
       icon: Users,
       color: "bg-purple-500",
       pages: [
         { title: "Community Forums", url: "/community", description: "Discussion and collaboration space" },
-        { title: "Search Content", url: "/search", description: "Find specific resources and content" },
         { title: "Member Dashboard", url: "/dashboard", description: "Personal account and progress tracking" },
-        { title: "Membership Plans", url: "/membership", description: "Subscription tiers and benefits" },
-        { title: "Events Calendar", url: "/events", description: "Upcoming events and workshops" },
-        { title: "Components Showcase", url: "/components", description: "UI component library demonstration" }
+        { title: "Membership Plans", url: "/membership", description: "Subscription tiers and benefits" }
       ]
     },
     {
@@ -97,24 +85,19 @@ export default function SiteMapPage() {
       pages: [
         { title: "LMS Platform", url: "/lms", description: "Complete learning management system" },
         { title: "LMS Dashboard", url: "/lms/dashboard", description: "Student and instructor dashboard" },
-        { title: "Course Creation", url: "/lms/courses/new", description: "Create and manage courses" },
-        { title: "LMS Authentication", url: "/lms/auth", description: "LMS-specific login portal" },
-        { title: "LMS Setup", url: "/lms/setup", description: "Initial platform configuration" },
+        { title: "Course Catalog", url: "/lms/courses", description: "Browse available courses and content" },
+        { title: "Learning Interface", url: "/lms/learn", description: "Interactive learning experience" },
         { title: "Movemental Program", url: "/lms/movemental", description: "Specialized movemental training" },
+        { title: "LMS Authentication", url: "/lms/auth", description: "LMS-specific login portal" },
         { title: "LMS Settings", url: "/lms/settings", description: "Platform configuration and preferences" }
       ]
     },
     {
-      category: "Authentication & Account Management",
+      category: "Authentication",
       icon: User,
       color: "bg-indigo-500",
       pages: [
-        { title: "Sign In", url: "/auth/login", description: "Member login portal" },
-        { title: "Create Account", url: "/auth/signup", description: "New user registration" },
-        { title: "Admin Dashboard", url: "/admin", description: "Complete administrative control panel" },
-        { title: "Test Users Management", url: "/admin/test-users", description: "Development user management" },
-        { title: "Dev Sign In", url: "/dev-signin", description: "Development authentication portal" },
-        { title: "No-Auth Testing", url: "/no-auth-testing", description: "Authentication bypass for testing" }
+        { title: "Sign In / Sign Up", url: "/auth", description: "Member authentication portal" }
       ]
     },
     {
@@ -131,24 +114,46 @@ export default function SiteMapPage() {
       ]
     },
     {
-      category: "Development & Testing Pages",
-      icon: Settings,
-      color: "bg-gray-500",
-      pages: [
-        { title: "Content Checklist", url: "/content-checklist", description: "Development content audit tool" },
-        { title: "Multimedia Demo", url: "/multimedia-demo", description: "Media component demonstrations" },
-        { title: "Test Setup", url: "/test-setup", description: "Development environment configuration" },
-        { title: "Content Creator", url: "/content-creator", description: "Content management interface" },
-        { title: "Site Map", url: "/site-map", description: "Complete site navigation index" }
-      ]
-    },
-    {
-      category: "E-commerce & Donations",
+      category: "Products & Services",
       icon: CreditCard,
       color: "bg-green-600",
       pages: [
         { title: "Products", url: "/products", description: "Available books and resources for purchase" },
-        { title: "Donate", url: "/donate", description: "Support Alan's ministry and mission" }
+        { title: "Speaking", url: "/speaking", description: "Speaking engagements and workshop topics" },
+        { title: "Events", url: "/events", description: "Upcoming events and workshops" }
+      ]
+    },
+    {
+      category: "Administrative",
+      icon: Settings,
+      color: "bg-gray-500",
+      pages: [
+        { title: "Admin Dashboard", url: "/admin", description: "Administrative control panel" },
+        { title: "Blog Management", url: "/admin/blog", description: "Blog content management" },
+        { title: "Content Creation", url: "/admin/content", description: "Content management interface" },
+        { title: "Member Management", url: "/admin/members", description: "User administration" },
+        { title: "Analytics", url: "/admin/analytics", description: "Site performance analytics" },
+        { title: "Resource Management", url: "/admin/resources", description: "Asset and resource management" },
+        { title: "AI Agents", url: "/admin/ai-agents", description: "AI system management" },
+        { title: "Settings", url: "/admin/settings", description: "System configuration" }
+      ]
+    },
+    {
+      category: "Legal & Policies",
+      icon: Shield,
+      color: "bg-slate-500",
+      pages: [
+        { title: "Privacy Policy", url: "/privacy", description: "Data privacy and usage policies" },
+        { title: "Terms of Service", url: "/terms", description: "Website terms and conditions" },
+        { title: "Ethics Statement", url: "/ethics", description: "Ethical guidelines and commitments" }
+      ]
+    },
+    {
+      category: "Archive",
+      icon: FileText,
+      color: "bg-amber-500",
+      pages: [
+        { title: "Content Archive", url: "/archive", description: "Archived content and experimental features" }
       ]
     }
   ];

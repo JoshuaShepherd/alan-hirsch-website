@@ -33,8 +33,8 @@ export default function FutureTravelers() {
         <section className="section-padding-lg bg-section">
           <div className="max-w-container mx-auto px-6">
             <div className="text-center mb-8">
-              <Link href="/toolkit" className="text-primary hover:text-primary/80 text-sm font-medium mb-4 inline-block">
-                ← Back to Movement Toolkit
+              <Link href="/resources" className="text-primary hover:text-primary/80 text-sm font-medium mb-4 inline-block">
+                ← Back to Movement Resources
               </Link>
             </div>
             
@@ -437,8 +437,8 @@ export default function FutureTravelers() {
               <Link href="/about" className="btn-primary">
                 🧭 Discover Church Renewal Strategies
               </Link>
-              <Link href="/toolkit" className="btn-outline">
-                ← Back to Movement Toolkit
+              <Link href="/resources" className="btn-outline">
+                ← Back to Movement Resources
               </Link>
             </div>
           </div>

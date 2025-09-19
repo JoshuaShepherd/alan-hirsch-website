@@ -376,7 +376,7 @@ export function MissionalCommunity({ currentUser, onResourceAccess }: MissionalC
                 placeholder="Search resources..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-forest"
+                className="w-full pl-9 pr-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-forest dark:focus:ring-forest-dark focus:border-transparent transition-colors"
               />
             </div>
             <div className="flex items-center space-x-2">
@@ -384,7 +384,7 @@ export function MissionalCommunity({ currentUser, onResourceAccess }: MissionalC
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-forest"
+                className="px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-forest dark:focus:ring-forest-dark focus:border-transparent transition-colors"
               >
                 <option value="all">All Categories</option>
                 <option value="incarnational">Incarnational</option>

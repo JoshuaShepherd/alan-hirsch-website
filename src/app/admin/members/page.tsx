@@ -1,20 +1,8 @@
 'use client'
 
-import { AdminMemberManagement } from '@/components/admin/AdminMemberManagement'
+import { ComprehensiveMemberManagement } from '@/components/admin/ComprehensiveMemberManagement'
 
 export default function AdminMembersPage() {
-  const handleSendEmail = (memberIds: string[], subject: string, content: string) => {
-    console.log('Sending email to members:', { memberIds, subject, content })
-  }
-
-  const handleUpdateSubscription = (memberId: string, plan: string) => {
-    console.log('Updating subscription:', { memberId, plan })
-  }
-
-  const handleExportMembers = () => {
-    console.log('Exporting member data...')
-  }
-
   return (
     <div className="min-h-screen bg-page">
       <div className="bg-card border-b border-border">
@@ -24,18 +12,14 @@ export default function AdminMembersPage() {
               Member Management
             </h1>
             <p className="text-card-foreground/70">
-              Manage your community members and subscriptions
+              Comprehensive member management with roles, permissions, subscriptions, and analytics
             </p>
           </div>
         </div>
       </div>
 
       <div className="max-w-container mx-auto px-6 py-8">
-        <AdminMemberManagement
-          onSendEmail={handleSendEmail}
-          onUpdateSubscription={handleUpdateSubscription}
-          onExportMembers={handleExportMembers}
-        />
+        <ComprehensiveMemberManagement />
       </div>
     </div>
   )

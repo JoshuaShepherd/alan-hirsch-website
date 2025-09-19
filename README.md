@@ -10,6 +10,52 @@ A modern React Next.js application built with TypeScript, Tailwind CSS, and shad
 - **UI Components**: shadcn/ui
 - **Linting**: ESLint
 
+## Contemporary Meta Design System (Opt-in)
+
+This project includes a **contemporary visual meta layer** built on top of the existing Editorial Modern theme. All enhancements are **additive and opt-in** - existing functionality remains unchanged.
+
+### Quick Start
+
+```tsx
+// Enhanced components (opt-in)
+import { Shell, Eyebrow, Prose } from '@/components/primitives';
+import { FadeIn, Interactive } from '@/components/motion';
+
+<FadeIn delay={0.1}>
+  <Shell variant="elevated" size="md">
+    <Eyebrow variant="accent">Featured</Eyebrow>
+    <h2>Enhanced Content</h2>
+    <Prose variant="contemporary">
+      <p>Contemporary typography with better spacing...</p>
+    </Prose>
+  </Shell>
+</FadeIn>
+```
+
+### Available Enhancements
+
+- **Design Tokens**: Enhanced spacing (8pt grid), shadows, border radius, motion timing
+- **Primitives**: Shell (cards), Eyebrow (labels), Prose (typography)
+- **Motion**: FadeIn, Stagger, Interactive components with accessibility support
+- **Focus**: Enhanced focus rings with brand colors
+- **Accessibility**: Full `prefers-reduced-motion` support
+
+### Documentation
+
+- **[DESIGN.md](./DESIGN.md)** - Complete design system documentation
+- **[MIGRATION-NOTES.md](./MIGRATION-NOTES.md)** - Step-by-step adoption guide
+- **[DESIGN-AUDIT.md](./DESIGN-AUDIT.md)** - Pre-implementation audit
+
+### Feature Flags
+
+Control enhancement adoption via environment variables:
+
+```bash
+ENABLE_CONTEMPORARY_SHADOWS=true
+ENABLE_MOTION_ENHANCEMENTS=true
+ENABLE_GLASS_EFFECTS=false
+```
+
 ## Getting Started
 
 First, run the development server:

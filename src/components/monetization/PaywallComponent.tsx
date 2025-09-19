@@ -296,7 +296,7 @@ export function PaywallComponent({
           </Link>
           
           <Link 
-            href="/toolkit" 
+            href="/resources" 
             className="p-4 bg-background rounded-lg hover:bg-muted/50 transition-colors text-center"
           >
             <Users className="h-6 w-6 text-primary mx-auto mb-2" />

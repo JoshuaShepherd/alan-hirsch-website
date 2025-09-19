@@ -24,21 +24,20 @@ export function Footer() {
             <h4 className="font-semibold mb-4">Books & Content</h4>
             <ul className="space-y-2">
               <li><Link href="/books" className="text-paper/80 hover:text-paper transition-colors">Complete Library</Link></li>
-              <li><Link href="/articles" className="text-paper/80 hover:text-paper transition-colors">Articles</Link></li>
+              <li><Link href="/blog" className="text-paper/80 hover:text-paper transition-colors">Blog</Link></li>
               <li><Link href="/podcast" className="text-paper/80 hover:text-paper transition-colors">Podcast</Link></li>
-              <li><Link href="/video-library" className="text-paper/80 hover:text-paper transition-colors">Videos</Link></li>
               <li><Link href="/newsletter" className="text-paper/80 hover:text-paper transition-colors">Newsletter</Link></li>
+              <li><Link href="/resources" className="text-paper/80 hover:text-paper transition-colors">Resources</Link></li>
             </ul>
           </div>
 
-          {/* Assessment Tools */}
+          {/* Assessment & Learning */}
           <div>
-            <h4 className="font-semibold mb-4">Assessment Tools</h4>
+            <h4 className="font-semibold mb-4">Assessment & Learning</h4>
             <ul className="space-y-2">
               <li><Link href="/missional-assessment" className="text-paper/80 hover:text-paper transition-colors">Missional Assessment</Link></li>
-              <li><Link href="/apest-agents" className="text-paper/80 hover:text-paper transition-colors">APEST Agents</Link></li>
-              <li><Link href="/mdna-hero" className="text-paper/80 hover:text-paper transition-colors">mDNA Hero</Link></li>
-              <li><Link href="/toolkit" className="text-paper/80 hover:text-paper transition-colors">Toolkit</Link></li>
+              <li><Link href="/lms" className="text-paper/80 hover:text-paper transition-colors">Learning Platform</Link></li>
+              <li><Link href="/lms/movemental" className="text-paper/80 hover:text-paper transition-colors">Movemental</Link></li>
             </ul>
           </div>
 
@@ -61,8 +60,9 @@ export function Footer() {
               <li><Link href="/5q" className="text-paper/80 hover:text-paper transition-colors">5Q Collective</Link></li>
               <li><Link href="/movement-leaders" className="text-paper/80 hover:text-paper transition-colors">Movement Leaders</Link></li>
               <li><Link href="/100movements" className="text-paper/80 hover:text-paper transition-colors">100 Movements</Link></li>
-              <li><Link href="/products" className="text-paper/80 hover:text-paper transition-colors">Products</Link></li>
-              <li><Link href="/donate" className="text-paper/80 hover:text-paper transition-colors">Donate</Link></li>
+              <li><Link href="/forge" className="text-paper/80 hover:text-paper transition-colors">Forge</Link></li>
+              <li><Link href="/future-travelers" className="text-paper/80 hover:text-paper transition-colors">Future Travelers</Link></li>
+              <li><Link href="/crm" className="text-paper/80 hover:text-paper transition-colors">CRM</Link></li>
             </ul>
           </div>
         </div>
@@ -73,7 +73,8 @@ export function Footer() {
               <Link href="/privacy" className="hover:text-paper transition-colors">Privacy Policy</Link>
               <Link href="/terms" className="hover:text-paper transition-colors">Terms of Service</Link>
               <Link href="/ethics" className="hover:text-paper transition-colors">Ethics Statement</Link>
-              <Link href="/cookies" className="hover:text-paper transition-colors">Cookie Policy</Link>
+              <span className="text-paper/40">•</span>
+              <Link href="/archive" className="hover:text-paper transition-colors">Content Archive</Link>
             </div>
             <div className="text-right">
               <p className="text-paper/60 text-sm">

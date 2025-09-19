@@ -43,19 +43,19 @@ export function Header() {
           </div>
 
           <div className="hidden lg:flex items-center space-x-8">
-            <Link href="/books" className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors font-medium">
+            <Link href="/books" className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 rounded px-2 py-1">
               Books
             </Link>
-            <Link href="/missional-assessment" className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors font-medium">
+            <Link href="/missional-assessment" className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 rounded px-2 py-1">
               Assessment
             </Link>
-            <Link href="/speaking" className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors font-medium">
+            <Link href="/speaking" className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 rounded px-2 py-1">
               Speaking
             </Link>
-            <Link href="/about" className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors font-medium">
+            <Link href="/about" className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 rounded px-2 py-1">
               About
             </Link>
-            <Link href="/contact" className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors font-medium">
+            <Link href="/contact" className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 rounded px-2 py-1">
               Contact
             </Link>
           </div>
@@ -64,7 +64,7 @@ export function Header() {
             <ThemeToggle />
             <button 
               onClick={toggleMenu}
-              className="lg:hidden p-2 text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              className="lg:hidden p-2 text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 rounded"
               aria-label="Toggle menu"
             >
               {isMenuOpen ? (
@@ -77,7 +77,7 @@ export function Header() {
             <div className="hidden lg:block">
               <Link 
                 href="/auth/login" 
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+                className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white px-4 py-2 rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900"
               >
                 Sign In
               </Link>
@@ -119,9 +119,8 @@ export function Header() {
                     </h3>
                     <div className="space-y-1 ml-6">
                       <Link href="/books" onClick={closeMenu} className="block text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white py-2 text-sm">Complete Book Library</Link>
-                      <Link href="/articles" onClick={closeMenu} className="block text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white py-2 text-sm">Articles</Link>
+                      <Link href="/blog" onClick={closeMenu} className="block text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white py-2 text-sm">Blog</Link>
                       <Link href="/podcast" onClick={closeMenu} className="block text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white py-2 text-sm">Podcast</Link>
-                      <Link href="/video-library" onClick={closeMenu} className="block text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white py-2 text-sm">Video Library</Link>
                       <Link href="/newsletter" onClick={closeMenu} className="block text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white py-2 text-sm">Newsletter</Link>
                       <Link href="/resources" onClick={closeMenu} className="block text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white py-2 text-sm">Resources Hub</Link>
                     </div>
@@ -134,10 +133,6 @@ export function Header() {
                     </h3>
                     <div className="space-y-1 ml-6">
                       <Link href="/missional-assessment" onClick={closeMenu} className="block text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white py-2 text-sm">Missional Assessment</Link>
-                      <Link href="/apest-agents" onClick={closeMenu} className="block text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white py-2 text-sm">APEST Agents</Link>
-                      <Link href="/mdna-hero" onClick={closeMenu} className="block text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white py-2 text-sm">mDNA Hero Demo</Link>
-                      <Link href="/diagnostic" onClick={closeMenu} className="block text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white py-2 text-sm">Diagnostic Tools</Link>
-                      <Link href="/toolkit" onClick={closeMenu} className="block text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white py-2 text-sm">Leadership Toolkit</Link>
                     </div>
                   </div>
 
@@ -186,22 +181,21 @@ export function Header() {
                       Learning Platform
                     </h3>
                     <div className="space-y-1 ml-6">
-                      <Link href="/lms" onClick={closeMenu} className="block text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white py-2 text-sm">LMS Main Platform</Link>
+                      <Link href="/lms" onClick={closeMenu} className="block text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white py-2 text-sm">LMS Platform</Link>
                       <Link href="/lms/dashboard" onClick={closeMenu} className="block text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white py-2 text-sm">LMS Dashboard</Link>
                       <Link href="/lms/movemental" onClick={closeMenu} className="block text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white py-2 text-sm">Movemental Program</Link>
-                      <Link href="/lms/courses/new" onClick={closeMenu} className="block text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white py-2 text-sm">Course Creation</Link>
-                      <Link href="/lms-simple" onClick={closeMenu} className="block text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white py-2 text-sm">Simple LMS</Link>
+                      <Link href="/lms/courses" onClick={closeMenu} className="block text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white py-2 text-sm">Course Catalog</Link>
                     </div>
                   </div>
 
                   <div>
                     <h3 className="text-base font-semibold text-black dark:text-white mb-3 flex items-center gap-2">
                       <ShoppingCart className="w-4 h-4 text-blue-600" />
-                      Products & Support
+                      Products & Services
                     </h3>
                     <div className="space-y-1 ml-6">
                       <Link href="/products" onClick={closeMenu} className="block text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white py-2 text-sm">Products</Link>
-                      <Link href="/donate" onClick={closeMenu} className="block text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white py-2 text-sm">Donate</Link>
+                      <Link href="/events" onClick={closeMenu} className="block text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white py-2 text-sm">Events</Link>
                     </div>
                   </div>
 
@@ -223,12 +217,12 @@ export function Header() {
                     </h3>
                     <div className="space-y-1 ml-6">
                       <Link href="/admin/dashboard" onClick={closeMenu} className="block text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white py-2 text-sm">Admin Dashboard</Link>
-                      <Link href="/admin/content/new" onClick={closeMenu} className="block text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white py-2 text-sm">Content Creation</Link>
+                      <Link href="/admin/blog" onClick={closeMenu} className="block text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white py-2 text-sm">Blog Management</Link>
+                      <Link href="/admin/content" onClick={closeMenu} className="block text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white py-2 text-sm">Content Creation</Link>
                       <Link href="/admin/analytics" onClick={closeMenu} className="block text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white py-2 text-sm">Analytics</Link>
                       <Link href="/admin/members" onClick={closeMenu} className="block text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white py-2 text-sm">Member Management</Link>
-                      <Link href="/admin/test-users" onClick={closeMenu} className="block text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white py-2 text-sm">Test Users</Link>
                       <Link href="/admin/ai-agents" onClick={closeMenu} className="block text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white py-2 text-sm">AI Agents</Link>
-                      <Link href="/admin/settings" onClick={closeMenu} className="block text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white py-2 text-sm">Admin Settings</Link>
+                      <Link href="/admin/settings" onClick={closeMenu} className="block text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white py-2 text-sm">Settings</Link>
                     </div>
                   </div>
 
@@ -240,7 +234,13 @@ export function Header() {
                     <Link href="/privacy" onClick={closeMenu} className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors">Privacy Policy</Link>
                     <Link href="/terms" onClick={closeMenu} className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors">Terms of Service</Link>
                     <Link href="/ethics" onClick={closeMenu} className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors">Ethics Statement</Link>
-                    <Link href="/cookies" onClick={closeMenu} className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors">Cookie Policy</Link>
+                  </div>
+                  
+                  <div className="mt-4 pt-3 border-t border-gray-200 dark:border-gray-700">
+                    <h4 className="text-xs font-semibold text-gray-500 dark:text-gray-500 mb-2">Archive</h4>
+                    <div className="text-xs text-gray-500 dark:text-gray-500">
+                      <Link href="/archive" className="hover:text-gray-700 dark:hover:text-gray-300">Browse archived content & experiments →</Link>
+                    </div>
                   </div>
                 </div>
 
